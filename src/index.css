@@ -1,0 +1,25 @@
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+div {
+  border: 0.5px solid red;
+}
+.center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+a {
+  text-decoration: none !important;
+  cursor: pointer !important;
+  /* color: #2e2e2e !important; */
+}

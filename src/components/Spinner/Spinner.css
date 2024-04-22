@@ -1,0 +1,37 @@
+.loading-image {
+  width: 6em;
+  height: 6em;
+	-webkit-animation: rotate-scale-up 1.2s linear infinite both;
+	        animation: rotate-scale-up 1.2s linear infinite both;
+  /* filter: drop-shadow(2px -2px 1px rgba(255, 0, 255, 1))
+    drop-shadow(-2px 2px 1px rgba(0, 255, 255, 1)) !important; */
+}
+
+@-webkit-keyframes rotate-scale-up {
+  0% {
+    -webkit-transform: scale(1) rotateZ(0);
+            transform: scale(1) rotateZ(0);
+  }
+  50% {
+    -webkit-transform: scale(2) rotateZ(180deg);
+            transform: scale(2) rotateZ(180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateZ(360deg);
+            transform: scale(1) rotateZ(360deg);
+  }
+}
+@keyframes rotate-scale-up {
+  0% {
+    -webkit-transform: scale(1) rotateZ(0);
+            transform: scale(1) rotateZ(0);
+  }
+  50% {
+    -webkit-transform: scale(2) rotateZ(180deg);
+            transform: scale(2) rotateZ(180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateZ(360deg);
+            transform: scale(1) rotateZ(360deg);
+  }
+}

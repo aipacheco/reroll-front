@@ -1,13 +1,13 @@
-
-input:focus {
+.form-select:focus {
   border-color: rgb(39, 39, 39) !important;
   /* outline: none !important; */
   box-shadow: -2px 2px 2px rgb(24, 24, 24) !important;
 }
-input {
+.form-select {
   border-color: rgb(131, 58, 180) !important;
   box-shadow: none !important;
 }
-.input-container {
-  min-height: 6em;
+.input-group-text{
+  background-color: rgba(69, 128, 252, 1) !important;
+  color: white !important;
 }

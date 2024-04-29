@@ -1,9 +1,6 @@
 #root {
-  font-family: "EB Garamond", serif;
+  font-family: "Open Sans", sans-serif;
   font-style: italic;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -17,18 +14,15 @@ div {
   align-items: center;
   height: 100%;
 }
-/* .centered-container {
+.centered-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-}  */
+}
 a {
   text-decoration: none !important;
   cursor: pointer !important;
-  /* color: #2e2e2e !important; */
+  color: #2e2e2e !important;
 }
-.h1-home{
-font-weight: extra-bold;
- font-size: 15em;
-}
+

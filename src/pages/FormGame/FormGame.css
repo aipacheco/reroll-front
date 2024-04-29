@@ -1,0 +1,9 @@
+.error {
+    font-size: 0.7em;
+    color: red;
+  }
+  .image-preview{
+    width: 10em;
+    height: 10em;
+    object-fit:contain;
+  }

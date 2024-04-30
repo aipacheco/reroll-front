@@ -3,6 +3,7 @@ import Register from "./pages/Register/Register"
 import Login from "./pages/Login/Login"
 import FormGame from "./pages/FormGame/FormGame"
 import Home from "./pages/Home/Home"
+import Profile from "./pages/Profile/Profile"
 // import Navbar from "./components/Navbar/Navbar"
 
 
@@ -19,6 +20,7 @@ export const Layout = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/:username" element={<Profile />} />
           <Route path="/newGame" element={<FormGame/>} />
         </Routes>
       </BrowserRouter>

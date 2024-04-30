@@ -1,10 +1,8 @@
-.loading-image {
+.loading-image{
   width: 6em;
   height: 6em;
 	-webkit-animation: rotate-scale-up 1.2s linear infinite both;
 	        animation: rotate-scale-up 1.2s linear infinite both;
-  /* filter: drop-shadow(2px -2px 1px rgba(255, 0, 255, 1))
-    drop-shadow(-2px 2px 1px rgba(0, 255, 255, 1)) !important; */
 }
 
 @-webkit-keyframes rotate-scale-up {

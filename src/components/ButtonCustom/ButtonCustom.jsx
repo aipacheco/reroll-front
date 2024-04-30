@@ -5,7 +5,7 @@ const ButtonCustom = ({ text, handleSubmit, isFormComplete}) => {
     <div className="center-flex">
       <button
         type="button"
-        className="btn btn-success"
+        className="btn btn-warning"
         onClick={handleSubmit}
         disabled={!isFormComplete}
       >

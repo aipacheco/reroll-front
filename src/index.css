@@ -10,9 +10,15 @@ div {
 }
 .center-flex {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+.centered{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .centered-container {
   display: flex;
@@ -23,6 +29,6 @@ div {
 a {
   text-decoration: none !important;
   cursor: pointer !important;
-  color: #2e2e2e !important;
+  color: orange !important;
 }
 

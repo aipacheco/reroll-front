@@ -171,7 +171,7 @@ const FormGame = () => {
               handleChange={handleChange}
             />
             <div className="error">{gameError.priceError}</div>
-            <div className="container center-flex">
+            <div className="container centered">
               {game.image1 ? (
                 <img
                   className="image-preview"

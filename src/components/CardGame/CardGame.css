@@ -1,0 +1,9 @@
+.card-game {
+  width: 20em;
+  height: 100%;
+  border-color: orange;
+}
+.card-img-top {
+    height: 15em; 
+    object-fit: cover; 
+  }

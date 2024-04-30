@@ -5,7 +5,7 @@ const InputFile = ({ label, name, handleChange, buttonText }) => {
   return (
     <>
       <label className="form-label">{label}</label>
-      <label className="btn btn-success m-1 mt-3">
+      <label className="btn btn-warning m-1 mt-3">
         {buttonText || "Seleccionar archivo"}
         <input
           type={"file"}

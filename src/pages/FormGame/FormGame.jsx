@@ -153,7 +153,7 @@ const FormGame = () => {
                     className="material-symbols-outlined"
                     onClick={() => handleDelete("image1")}
                   >
-                    close
+                  X
                   </span>
                 </>
               ) : (

@@ -16,3 +16,23 @@ export const GetProfile = async (username) => {
     throw error
   }
 }
+
+export const UpdateProfile = async (username, profile, token) => {
+  try {
+    const response = await fetch(`${URL}/${username}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(profile),
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}

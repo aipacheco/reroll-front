@@ -1,13 +1,13 @@
 #root {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: italic;
   margin: 0;
   padding: 0;
   height: 100%;
 }
-div {
+/* div {
   border: 0.5px solid red;
-}
+} */
 .center-flex {
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@ div {
   align-items: center;
   height: 100%;
 }
-.centered{
+.centered {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,4 +31,3 @@ a {
   cursor: pointer !important;
   color: orange !important;
 }
-

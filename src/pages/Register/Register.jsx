@@ -95,7 +95,7 @@ const Register = () => {
             />
           </div>
         ) : (
-          <div className="container">
+          <div className="card card-register container">
             <div className="col-12 mb-5 mt-3">
               <div className="input-container">
                 <InputCustom

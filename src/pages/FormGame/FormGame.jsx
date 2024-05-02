@@ -87,6 +87,12 @@ const FormGame = () => {
       category: selectedCategory,
     }))
   }
+  const handleDelete = (imageName) => {
+    setGame({
+      ...game,
+      [imageName]: null,
+    })
+  }
   const handleSubmit = async () => {
     setLoading(true)
     try {
@@ -120,7 +126,7 @@ const FormGame = () => {
 
   return (
     <>
-      <div className="container mt-5">
+      <div className="centered-container card card-register">
         <h2 className="center-flex mb-5">
           Introduce los datos del juego que quieres vender
         </h2>
@@ -135,6 +141,55 @@ const FormGame = () => {
           </div>
         ) : (
           <>
+            <div className="container centered justify-content-around ">
+              {game.image1 ? (
+                <>
+                  <img
+                    className="image-preview"
+                    src={URL.createObjectURL(game.image1)}
+                    alt="Vista previa"
+                  />
+                  <span
+                    className="material-symbols-outlined"
+                    onClick={() => handleDelete("image1")}
+                  >
+                    close
+                  </span>
+                </>
+              ) : (
+                <InputFile
+                  buttonText={"imagen 1"}
+                  name={"image1"}
+                  handleChange={handleChange}
+                />
+              )}
+              {game.image2 ? (
+                <img
+                  className="image-preview"
+                  src={URL.createObjectURL(game.image2)}
+                  alt="Vista previa"
+                />
+              ) : (
+                <InputFile
+                  buttonText={"imagen 2"}
+                  name={"image2"}
+                  handleChange={handleChange}
+                />
+              )}
+              {game.image3 ? (
+                <img
+                  className="image-preview"
+                  src={URL.createObjectURL(game.image3)}
+                  alt="Vista previa"
+                />
+              ) : (
+                <InputFile
+                  buttonText={"imagen 3"}
+                  name={"image3"}
+                  handleChange={handleChange}
+                />
+              )}
+            </div>
             <InputCustom
               label={"Nombre del juego"}
               name={"name"}
@@ -171,47 +226,6 @@ const FormGame = () => {
               handleChange={handleChange}
             />
             <div className="error">{gameError.priceError}</div>
-            <div className="container centered">
-              {game.image1 ? (
-                <img
-                  className="image-preview"
-                  src={URL.createObjectURL(game.image1)}
-                  alt="Vista previa"
-                />
-              ) : (
-                <InputFile
-                  buttonText={"imagen 1"}
-                  name={"image1"}
-                  handleChange={handleChange}
-                />
-              )}
-              {game.image2 ? (
-                <img
-                  className="image-preview"
-                  src={URL.createObjectURL(game.image2)}
-                  alt="Vista previa"
-                />
-              ) : (
-                <InputFile
-                  buttonText={"imagen 2"}
-                  name={"image2"}
-                  handleChange={handleChange}
-                />
-              )}
-              {game.image3 ? (
-                <img
-                  className="image-preview"
-                  src={URL.createObjectURL(game.image3)}
-                  alt="Vista previa"
-                />
-              ) : (
-                <InputFile
-                  buttonText={"imagen 3"}
-                  name={"image3"}
-                  handleChange={handleChange}
-                />
-              )}
-            </div>
 
             {isFormComplete && (
               <ButtonCustom

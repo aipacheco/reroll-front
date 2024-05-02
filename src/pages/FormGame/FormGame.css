@@ -3,9 +3,9 @@
     color: red;
   }
   .image-preview{
-    width: 10em;
-    height: 10em;
-    object-fit:contain;
+    width: 18em;
+    height: 18em;
+    object-fit:cover;
   }
   h2{
     color: orange;

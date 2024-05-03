@@ -1,0 +1,7 @@
+.bg-body-secondary{
+    background-color: rgb(255, 255, 255) !important;
+}
+.footer{
+    background-color: rgb(255, 255, 255) !important;
+    box-shadow: 0px -18px 17px -21px rgba(0, 0, 0, 0.35);
+}

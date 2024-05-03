@@ -16,3 +16,28 @@ export const GetProfile = async (username) => {
     throw error
   }
 }
+
+export const UpdateProfile = async (username, profile, token) => {
+   //cuando hay imágenes de por medio, hay que hacer un formdata
+   const formdata = new FormData()
+   formdata.append("avatar", profile.avatar)
+   formdata.append("description", profile.description)
+  try {
+    const response = await fetch(`${URL}/${username}`, {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+      body: formdata,
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    console.log(data)
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}

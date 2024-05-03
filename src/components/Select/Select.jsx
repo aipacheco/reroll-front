@@ -36,7 +36,7 @@ const Select = ({ onCategoryChange }) => {
         <option disabled>Elije una opción</option>
         {category.map((item, index) => (
           <option key={index} value={item._id}>
-            {item.name}
+            {item.name.toUpperCase()}
           </option>
         ))}
       </select>

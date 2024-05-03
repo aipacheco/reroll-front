@@ -3,10 +3,10 @@ import "./CardProfile.css"
 
 const CardProfile = ({avatar, username, description}) => {
   return (
-    <div className="card mb-3">
+
     <div className="row g-0">
-      <div className="col-md-4">
-        <img src={avatar} className="profile-img img-fluid rounded-center" />
+      <div className="col-md-4 center-flex mt-3">
+        <img src={avatar} className="profile-img img-fluid" />
       </div>
       <div className="col-md-8">
         <div className="card-body center-flex">
@@ -15,7 +15,7 @@ const CardProfile = ({avatar, username, description}) => {
         </div>
       </div>
     </div>
-  </div>
+
   )
 }
 

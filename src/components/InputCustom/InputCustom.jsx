@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "./InputCustom.css"
 
-const InputCustom = ({ label, type, name, handleChange }) => {
+const InputCustom = ({ label, type, name, handleChange, placeholder }) => {
   return (
     <>
       <label className="form-label">{label}</label>
@@ -10,6 +10,7 @@ const InputCustom = ({ label, type, name, handleChange }) => {
         name={name}
         className="form-control"
         onChange={handleChange}
+        placeholder={placeholder}
       ></input>
     </>
   )

@@ -6,11 +6,19 @@ import Spinner from "../Spinner/Spinner"
 import AlertCustom from "../AlertCustom/AlertCustom"
 import InputCustom from "../InputCustom/InputCustom"
 import ButtonCustom from "../ButtonCustom/ButtonCustom"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import InputFile from "../InputFile/InputFile"
-import { CheckForm, checkAllEmpty, validator } from "../../utils/utils"
+import { validator } from "../../utils/utils"
+import { UpdateProfile } from "../../services/userServices"
 
-const EditUserModal = ({ isModalOpen, handleModal, avatar, description }) => {
+const EditUserModal = ({
+  isModalOpen,
+  handleModal,
+  avatar,
+  description,
+  username,
+  token,
+}) => {
   const [loading, setLoading] = useState(false)
   const [stateMessage, setStateMessage] = useState({
     message: "",
@@ -19,23 +27,12 @@ const EditUserModal = ({ isModalOpen, handleModal, avatar, description }) => {
   const [alert, setAlert] = useState(false)
   const [avatarFile, setAvatarFile] = useState(avatar)
   const [editProfile, setEditProfile] = useState({
-    description: description || "",
+    description,
   })
   const [editProfileError, setEditProfileError] = useState({
     descriptionError: "",
   })
-  const [isFormComplete, setIsFormComplete] = useState(false)
   const [avatarUrl, setAvatarUrl] = useState(null)
-
-  useEffect(() => {
-    const isErrorClean = checkAllEmpty(editProfileError)
-    const isUserComplete = CheckForm(editProfile)
-    if (isErrorClean && isUserComplete) {
-      setIsFormComplete(true)
-    } else {
-      setIsFormComplete(false)
-    }
-  }, [editProfile, editProfileError])
 
   const handleChange = ({ target }) => {
     //si es un archivo
@@ -59,6 +56,28 @@ const EditUserModal = ({ isModalOpen, handleModal, avatar, description }) => {
     }
   }
 
+  const handleEdit = async () => {
+    // setLoading(true)
+    try {
+      const profile = {
+        description: editProfile.description,
+        avatar: avatarFile?.avatar,
+      }
+      const updated = await UpdateProfile(username, profile, token)
+      setEditProfile(updated.data)
+      handleModal()
+      // setLoading(false)
+    } catch (error) {
+      console.log("Error updatinging profile:", error)
+      setLoading(false)
+      setAlert(true)
+      setStateMessage({
+        message: `${error}`,
+        className: "danger",
+      })
+    }
+  }
+
   return (
     <Modal
       className="center-modal modal-form"
@@ -77,40 +96,50 @@ const EditUserModal = ({ isModalOpen, handleModal, avatar, description }) => {
         />
       ) : (
         <>
-          <InputCustom
-            label={"Descripción"}
-            type={"text"}
-            name={"description"}
-            value={editProfile.description || ""}
-            handleChange={handleChange}
-          />
-          <div className="error">{editProfileError.descriptionError}</div>
-          <div className="mt-3">
-            <div className="container centered justify-content-around ">
-              {avatarUrl ? (
-                <>
-                  {" "}
-                  <img src={avatarUrl} alt="Avatar"  className="image-preview"/>
-                  <span
-                    className="material-symbols-outlined"
-                    onClick={() => setAvatarUrl(null)}
-                  >
-                    X
-                  </span>
-                </>
-              ) : (
-                <InputFile
-                  buttonText={"Avatar"}
-                  name={"avatar"}
-                  handleChange={handleChange}
-                />
-              )}
-            </div>
-            <ButtonCustom
-              text={"Guardar cambios"}
-              isFormComplete={isFormComplete}
-              // handleSubmit={handleEditSubmit}
+          <div className="container">
+            <h5>Edita tus datos de usuario</h5>
+            <InputCustom
+              label={"Descripción"}
+              type={"text"}
+              name={"description"}
+              value={editProfile.description}
+              handleChange={handleChange}
+              placeholder={description}
             />
+            <div className="error">{editProfileError.descriptionError}</div>
+            <div className="mt-3">
+              <div className="container centered justify-content-around mb-3">
+                {avatarUrl ? (
+                  <>
+                    {" "}
+                    <img
+                      src={avatarUrl}
+                      alt="Avatar"
+                      className="image-preview"
+                    />
+                    <span
+                      className="material-symbols-outlined"
+                      onClick={() => setAvatarUrl(null)}
+                    >
+                      X
+                    </span>
+                  </>
+                ) : (
+                  <InputFile
+                    buttonText={"Avatar"}
+                    name={"avatar"}
+                    handleChange={handleChange}
+                  />
+                )}
+              </div>
+              <div className="mb-2">
+                <ButtonCustom
+                  text={"Guardar cambios"}
+                  isFormComplete={true}
+                  handleSubmit={handleEdit}
+                />
+              </div>
+            </div>
           </div>
         </>
       )}

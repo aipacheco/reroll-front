@@ -118,6 +118,7 @@ const Login = () => {
                   type={"email"}
                   name={"email"}
                   handleChange={handleChange}
+                  placeholder={"Introduce tu email"}
                 />
                 <div className="error">{userError.emailError}</div>{" "}
               </div>
@@ -127,6 +128,7 @@ const Login = () => {
                   type={"password"}
                   name={"password"}
                   handleChange={handleChange}
+                  placeholder={"Introduce tu contraseña"}
                 />
                 <div className="error">{userError.passwordError}</div>{" "}
               </div>

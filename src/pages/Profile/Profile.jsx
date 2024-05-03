@@ -53,22 +53,8 @@ const Profile = () => {
     setIsModalOpen(!isModalOpen)
   }
 
-  //   const updateProfile = async () => {
-  //   setLoading(true)
-  //   try {
-  //     const updated = await UpdateProfile(username, profile, token)
-  //     // setProfile(myProfile.data)
-  //     // setUserGames(myProfile.data.games)
-  //   } catch (error) {
-  //     console.log("Error updatinging profile:", error)
-  //     setLoading(false)
-  //     setAlert(true)
-  //     setStateMessage({
-  //       message: `${error}`,
-  //       className: "danger",
-  //     })
-  //   }
-  // }
+ 
+
   useEffect(() => {
     fetchProfile()
   }, [username])
@@ -85,10 +71,10 @@ const Profile = () => {
           description={description}
         />
         {edit && (
-          <div className="d-flex justify-content-center mt-3">
+          <div className="d-flex justify-content-end p-3">
             {" "}
             <button
-              className="btn btn-primary"
+              className="btn btn-warning"
               onClick={() => setIsModalOpen(true)}
             >
               Editar perfil
@@ -102,6 +88,8 @@ const Profile = () => {
         handleModal={handleModal}
         avatar={avatar}
         description={description}
+        username={decode.username}
+        token={token}
       />
 
       <div className="row">

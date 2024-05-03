@@ -5,7 +5,7 @@ const CardProfile = ({avatar, username, description}) => {
   return (
 
     <div className="row g-0">
-      <div className="col-md-4 center-flex">
+      <div className="col-md-4 center-flex mt-3">
         <img src={avatar} className="profile-img img-fluid" />
       </div>
       <div className="col-md-8">

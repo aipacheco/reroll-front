@@ -105,6 +105,7 @@ const Register = () => {
                   type={"text"}
                   name={"username"}
                   handleChange={handleChange}
+                  placeholder={"Introduce tu nombre de usuario"}
                 />
                 <div className="error">{userError.usernameError}</div>
               </div>
@@ -114,6 +115,7 @@ const Register = () => {
                   type={"email"}
                   name={"email"}
                   handleChange={handleChange}
+                  placeholder={"Introduce tu email"}
                 />
                 <div className="error">{userError.emailError}</div>
               </div>
@@ -123,6 +125,7 @@ const Register = () => {
                   type={"password"}
                   name={"password"}
                   handleChange={handleChange}
+                  placeholder={"Introduce tu contraseña"}
                 />
                 <div className="error">{userError.passwordError}</div>
               </div>

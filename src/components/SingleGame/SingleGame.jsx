@@ -12,12 +12,21 @@ import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography"
 import ButtonCustom from "../../components/ButtonCustom/ButtonCustom"
-
+import { useNavigate } from "react-router-dom"
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 
-const SingleGame = ({ images }) => {
+const SingleGame = ({
+  images,
+  name,
+  description,
+  playersMin,
+  playersMax,
+  price,
+  author
+}) => {
   const theme = useTheme()
+  const navigate = useNavigate()
   const [activeStep, setActiveStep] = React.useState(0)
   const maxSteps = images.length
 
@@ -33,6 +42,9 @@ const SingleGame = ({ images }) => {
 
   const handleStepChange = (step) => {
     setActiveStep(step)
+  }
+  const handleAuthor = () => {
+    navigate(`/${author}`)
   }
 
   return (
@@ -64,6 +76,7 @@ const SingleGame = ({ images }) => {
                     width: "100%",
                     padding: 2,
                     objectFit: "cover",
+                    border: "1px solid orange",
                   }}
                   src={step.imgPath}
                   alt={step.label}
@@ -73,6 +86,14 @@ const SingleGame = ({ images }) => {
           ))}
         </AutoPlaySwipeableViews>
         <MobileStepper
+          sx={{
+            border: "1px solid orange",
+            '& .MuiMobileStepper-dot': {
+                backgroundColor: 'beige', 
+              },
+              '& .MuiMobileStepper-dotActive': {
+                backgroundColor: 'orange',
+          }}}
           steps={maxSteps}
           position="static"
           activeStep={activeStep}
@@ -81,8 +102,9 @@ const SingleGame = ({ images }) => {
               size="small"
               onClick={handleNext}
               disabled={activeStep === maxSteps - 1}
+              sx={{ color: 'orange' }}
             >
-              Next
+              Siguiente
               {theme.direction === "rtl" ? (
                 <KeyboardArrowLeft />
               ) : (
@@ -95,24 +117,32 @@ const SingleGame = ({ images }) => {
               size="small"
               onClick={handleBack}
               disabled={activeStep === 0}
+              sx={{ color: 'orange' }}
             >
               {theme.direction === "rtl" ? (
                 <KeyboardArrowRight />
               ) : (
                 <KeyboardArrowLeft />
               )}
-              Back
+              Anterior
             </Button>
           }
         />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Aquí va tu texto
+        <CardContent
+          sx={{
+            border: "1px solid orange",
+          }}
+        >
+          <Typography color="text.secondary" onClick={handleAuthor} className="clickable">{author}</Typography>
+          <Typography color="text.dark" variant="h6">{name}</Typography>
+          <Typography color="text.secondary">{description}</Typography>
+          <Typography color="text.secondary">
+            {playersMin} - {playersMax} jugadores
           </Typography>
-          <ButtonCustom text={"comprar"} isFormComplete={true}/>
+          <Typography color="text">{price} €</Typography>
+          <ButtonCustom text={"comprar"} isFormComplete={true} />
         </CardContent>
       </Card>
-  
     </Box>
   )
 }

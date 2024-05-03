@@ -110,6 +110,7 @@ const Profile = () => {
             return (
               <div className="col-12 col-md-6 col-lg-4" key={game._id}>
                 <CardGame
+                _id={game._id}
                   key={game._id}
                   name={game.name}
                   image1={game.image1}

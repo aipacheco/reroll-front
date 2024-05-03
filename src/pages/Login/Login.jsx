@@ -4,7 +4,7 @@ import "./Login.css"
 import ButtonCustom from "../../components/ButtonCustom/ButtonCustom"
 import { Link, useNavigate } from "react-router-dom"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { setAuthToken } from "../../redux/authSlice"
 import { CheckForm, checkAllEmpty, validator } from "../../utils/utils"
 import Spinner from "../../components/Spinner/Spinner"
@@ -29,6 +29,7 @@ const Login = () => {
     emailError: "",
     passwordError: "",
   })
+  const decode = useSelector((state) => state.auth.decode)
 
   useEffect(() => {
     const isErrorClean = checkAllEmpty(userError)
@@ -72,18 +73,11 @@ const Login = () => {
           message: userLogged.message,
           className: "success",
         })
-        if (decode.role === "user") {
-          setTimeout(() => {
-            setAlert(false)
-            navigate(`/${decode.username}`)
-          }, 1200)
-        }
-        if (decode.role === "super_admin") {
-          setTimeout(() => {
-            setAlert(false)
-            navigate("/admin")
-          }, 1200)
-        }
+
+        setTimeout(() => {
+          setAlert(false)
+          navigate(`/${decode.username}`)
+        }, 1200)
       }
     } catch (error) {
       setLoading(false)
@@ -94,7 +88,7 @@ const Login = () => {
       })
       setTimeout(() => {
         setAlert(false)
-        navigate("/login")
+        navigate(`/login`)
       }, 1200)
       console.log(error)
     }
@@ -104,6 +98,7 @@ const Login = () => {
   return (
     <>
       <div className="centered-container">
+          
         {loading ? (
           <Spinner />
         ) : alert ? (
@@ -116,6 +111,7 @@ const Login = () => {
         ) : (
           <div className="card card-register container">
             <div className="col-12 mb-5 mt-3">
+            <h2 className="text-center"> Login </h2>
               <div className="input-container">
                 <InputCustom
                   label={"Email"}

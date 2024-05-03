@@ -31,3 +31,7 @@ a {
   cursor: pointer !important;
   color: orange !important;
 }
+.card{
+  box-shadow: 0px 5px 10px 1px rgba(254, 189, 92, 0.279);
+
+}

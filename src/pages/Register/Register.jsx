@@ -97,6 +97,8 @@ const Register = () => {
         ) : (
           <div className="card card-register container">
             <div className="col-12 mb-5 mt-3">
+            <h2 className="text-center"> Registro </h2>
+
               <div className="input-container">
                 <InputCustom
                   label={"Nombre de usuario"}

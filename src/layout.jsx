@@ -5,7 +5,8 @@ import FormGame from "./pages/FormGame/FormGame"
 import Home from "./pages/Home/Home"
 import Profile from "./pages/Profile/Profile"
 import GameDetail from "./pages/GameDetail/GameDetail"
-// import Navbar from "./components/Navbar/Navbar"
+import Footer from "./components/Footer/Footer"
+import Navbar from "./components/Navbar/Navbar"
 
 
 
@@ -16,7 +17,7 @@ export const Layout = () => {
   return (
     <>
       <BrowserRouter>
-        {/* <Navbar /> */}
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
@@ -25,6 +26,7 @@ export const Layout = () => {
           <Route path="/newGame" element={<FormGame/>} />
           <Route path="/game/:id" element={<GameDetail/>} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )

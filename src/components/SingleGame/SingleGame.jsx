@@ -23,7 +23,7 @@ const SingleGame = ({
   playersMin,
   playersMax,
   price,
-  author
+  author,
 }) => {
   const theme = useTheme()
   const navigate = useNavigate()
@@ -53,10 +53,13 @@ const SingleGame = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
+        height: "80vh",
+        marginTop: 5,
+        marginBottom: 20,
       }}
     >
-      <Card sx={{ maxWidth: 650, flexGrow: 1 }}>
+      <div className="container">
+        <div className="card">
         <AutoPlaySwipeableViews
           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
           index={activeStep}
@@ -69,9 +72,9 @@ const SingleGame = ({
                 <Box
                   component="img"
                   sx={{
-                    height: 650,
+                    height: 550,
                     display: "block",
-                    maxWidth: 650,
+                    maxWidth: 550,
                     overflow: "hidden",
                     width: "100%",
                     padding: 2,
@@ -88,12 +91,13 @@ const SingleGame = ({
         <MobileStepper
           sx={{
             border: "1px solid orange",
-            '& .MuiMobileStepper-dot': {
-                backgroundColor: 'beige', 
-              },
-              '& .MuiMobileStepper-dotActive': {
-                backgroundColor: 'orange',
-          }}}
+            "& .MuiMobileStepper-dot": {
+              backgroundColor: "beige",
+            },
+            "& .MuiMobileStepper-dotActive": {
+              backgroundColor: "orange",
+            },
+          }}
           steps={maxSteps}
           position="static"
           activeStep={activeStep}
@@ -102,7 +106,7 @@ const SingleGame = ({
               size="small"
               onClick={handleNext}
               disabled={activeStep === maxSteps - 1}
-              sx={{ color: 'orange' }}
+              sx={{ color: "orange" }}
             >
               Siguiente
               {theme.direction === "rtl" ? (
@@ -117,7 +121,7 @@ const SingleGame = ({
               size="small"
               onClick={handleBack}
               disabled={activeStep === 0}
-              sx={{ color: 'orange' }}
+              sx={{ color: "orange" }}
             >
               {theme.direction === "rtl" ? (
                 <KeyboardArrowRight />
@@ -133,8 +137,16 @@ const SingleGame = ({
             border: "1px solid orange",
           }}
         >
-          <Typography color="text.secondary" onClick={handleAuthor} className="clickable">{author}</Typography>
-          <Typography color="text.dark" variant="h6">{name}</Typography>
+          <Typography
+            color="text.secondary"
+            onClick={handleAuthor}
+            className="clickable"
+          >
+            {author}
+          </Typography>
+          <Typography color="text.dark" variant="h6">
+            {name}
+          </Typography>
           <Typography color="text.secondary">{description}</Typography>
           <Typography color="text.secondary">
             {playersMin} - {playersMax} jugadores
@@ -142,7 +154,8 @@ const SingleGame = ({
           <Typography color="text">{price} €</Typography>
           <ButtonCustom text={"comprar"} isFormComplete={true} />
         </CardContent>
-      </Card>
+      </div>
+      </div>
     </Box>
   )
 }

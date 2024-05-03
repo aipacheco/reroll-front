@@ -58,12 +58,6 @@ const EditUserModal = ({ isModalOpen, handleModal, avatar, description }) => {
       }))
     }
   }
-  // const handleDelete = (imageName) => {
-  //   setEditProfile({
-  //     ...editProfile,
-  //     [imageName]: null,
-  //   })
-  // }
 
   return (
     <Modal

@@ -32,3 +32,17 @@ export const CreateGame = async (data, token) => {
     throw error
   }
 }
+
+export const getSingleGame = async (id) => {
+  try {
+    const response = await fetch(`${URL}/${id}`)
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}

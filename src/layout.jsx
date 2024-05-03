@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login"
 import FormGame from "./pages/FormGame/FormGame"
 import Home from "./pages/Home/Home"
 import Profile from "./pages/Profile/Profile"
+import GameDetail from "./pages/GameDetail/GameDetail"
 // import Navbar from "./components/Navbar/Navbar"
 
 
@@ -22,6 +23,7 @@ export const Layout = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/:username" element={<Profile />} />
           <Route path="/newGame" element={<FormGame/>} />
+          <Route path="/game/:id" element={<GameDetail/>} />
         </Routes>
       </BrowserRouter>
     </>

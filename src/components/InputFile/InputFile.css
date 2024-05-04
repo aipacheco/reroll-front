@@ -1,20 +1,8 @@
-/* .form-select:focus {
-  border-color: rgb(255, 164, 45) !important;
-  box-shadow: -2px 2px 2px rgb(255, 161, 53) !important;
-} */
-/* .form-select {
-  border-color: rgb(251, 255, 0) !important;
-  box-shadow: none !important;
-} */
+
 .input-group-text{
   background-color: rgb(255, 179, 0) !important;
   color: white !important;
 }
-/* .card-upload{
-  width: 18em;
-  height: 18em;
-}  */
-
 .custum-file-upload {
   height: 200px;
   width: 300px;

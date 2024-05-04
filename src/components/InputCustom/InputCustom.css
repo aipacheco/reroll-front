@@ -1,11 +1,11 @@
 
 input:focus {
-  border-color: rgb(255, 45, 45) !important;
+  border-color:  #ffc107 !important;
   /* outline: none !important; */
   box-shadow: -2px 2px 2px rgb(255, 161, 53) !important;
 }
 input {
-  border-color: rgb(255, 0, 0) !important;
+  border-color:  #ffc107 !important;
   box-shadow: none !important;
 }
 .input-container {

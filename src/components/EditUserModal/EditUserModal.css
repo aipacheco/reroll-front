@@ -5,3 +5,9 @@
 .avatar-modal {
   height: 10em;
 }
+.center-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
+}

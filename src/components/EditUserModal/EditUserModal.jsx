@@ -40,7 +40,7 @@ const EditUserModal = ({
       ) : (
         <>
           <div className="container">
-            <h5>Edita tus datos de usuario</h5>
+            <h4 className="text-center"> Edita tus datos de usuario</h4>
             <InputCustom
               label={"Descripción"}
               type={"text"}

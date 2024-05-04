@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="bg-body-secondary nav justify-content-center sticky-top general-nav">
         <div className="nav-item">
           <Link to="/" replace>
-            <h1 className="h1-home center">re:roll</h1>
+            <h1 className="h1-home center">re-roll</h1>
           </Link>
         </div>
 

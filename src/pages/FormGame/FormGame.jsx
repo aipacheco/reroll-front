@@ -126,23 +126,23 @@ const FormGame = () => {
 
   return (
     <>
-      <div className="container centered-container mt-3 mb-3">
-        <div className="card p-3">
-          <h2 className="center-flex mb-3 mt-3">
-            Introduce los datos del juego que quieres vender
-          </h2>
-          {loading ? (
-            <Spinner />
-          ) : alert ? (
-            <div className="d-flex justify-content-center mt-3">
-              <AlertCustom
-                className={stateMessage.className}
-                message={stateMessage.message}
-              />
-            </div>
-          ) : (
-            <>
-              <div className="container container-preview  mb-3">
+      {loading ? (
+        <Spinner />
+      ) : alert ? (
+        <div className="d-flex justify-content-center mt-3">
+          <AlertCustom
+            className={stateMessage.className}
+            message={stateMessage.message}
+          />
+        </div>
+      ) : (
+        <>
+          <div className="container centered-container mt-3 mb-3">
+            <div className="card p-3">
+              <h2 className="center-flex mb-3 mt-3">
+                Introduce los datos del juego que quieres vender
+              </h2>
+              <div className="container container-preview mb-3">
                 {game.image1 ? (
                   <>
                     <div className="image-container">
@@ -253,15 +253,17 @@ const FormGame = () => {
                   isFormComplete={isFormComplete}
                   handleSubmit={handleSubmit}
                 />
-              ):( <ButtonCustom
-                text={"Debe rellenar todos los campos"}
-                isFormComplete={isFormComplete}
-                handleSubmit={handleSubmit}
-              />)}
-            </>
-          )}
-        </div>
-      </div>
+              ) : (
+                <ButtonCustom
+                  text={"Debe rellenar todos los campos"}
+                  isFormComplete={isFormComplete}
+                  handleSubmit={handleSubmit}
+                />
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </>
   )
 }

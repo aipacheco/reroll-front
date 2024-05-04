@@ -8,10 +8,11 @@ import CardGame from "../../components/CardGame/CardGame"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
 import EditUserModal from "../../components/EditUserModal/EditUserModal"
 import { validator } from "../../utils/utils"
+import Spinner from "../../components/Spinner/Spinner"
 
 const Profile = () => {
   const [alert, setAlert] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [profile, setProfile] = useState([])
   const [userGames, setUserGames] = useState([])
   const [stateMessage, setStateMessage] = useState({
@@ -118,61 +119,67 @@ const Profile = () => {
   const { avatar, description } = profile
 
   return (
-    <div className="container mt-5">
-      <div className="card mb-3">
-        <CardProfile
-          avatar={avatar}
-          username={username}
-          description={description}
-        />
-        {edit && (
-          <div className="d-flex justify-content-end p-1">
-            {" "}
-            <button className="btn btn-warning" onClick={handleModal}>
-              <span className="material-symbols-outlined">edit_note</span>
-            </button>
-          </div>
-        )}
-      </div>
-      <EditUserModal
-        loading={loading}
-        stateMessage={stateMessage}
-        alert={alert}
-        avatarFile={avatarFile}
-        editProfile={editProfile}
-        editProfileError={editProfileError}
-        avatarUrl={avatarUrl}
-        handleChange={handleChange}
-        handleEdit={handleEdit}
-        setAvatarUrl={setAvatarUrl}
-        isModalOpen={isModalOpen}
-        handleModal={handleModal}
-        // placeholderDescription={description}
-      />
-      <div className="row">
-        {userGames.length > 0 ? (
-          userGames.map((game) => {
-            return (
-              <div className="col-12 col-md-6 col-lg-4" key={game._id}>
-                <CardGame
-                  _id={game._id}
-                  key={game._id}
-                  name={game.name}
-                  image1={game.image1}
-                  description={game.description}
-                  price={game.price}
-                />
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="container mt-5">
+          <div className="card mb-3">
+            <CardProfile
+              avatar={avatar}
+              username={username}
+              description={description}
+            />
+            {edit && (
+              <div className="d-flex justify-content-end p-1">
+                {" "}
+                <button className="btn btn-warning" onClick={handleModal}>
+                  <span className="material-symbols-outlined">edit_note</span>
+                </button>
               </div>
-            )
-          })
-        ) : (
-          <AlertCustom
-            className={"light text-center"}
-            message={`El usuario ${username} no tiene juegos para vender.`}
+            )}
+          </div>
+          <EditUserModal
+            loading={loading}
+            stateMessage={stateMessage}
+            alert={alert}
+            avatarFile={avatarFile}
+            editProfile={editProfile}
+            editProfileError={editProfileError}
+            avatarUrl={avatarUrl}
+            handleChange={handleChange}
+            handleEdit={handleEdit}
+            setAvatarUrl={setAvatarUrl}
+            isModalOpen={isModalOpen}
+            handleModal={handleModal}
+            // placeholderDescription={description}
           />
-        )}
-      </div>
-    </div>
+          <div className="row">
+            {userGames.length > 0 ? (
+              userGames.map((game) => {
+                return (
+                  <div className="col-12 col-md-6 col-lg-4" key={game._id}>
+                    <CardGame
+                      _id={game._id}
+                      key={game._id}
+                      name={game.name}
+                      image1={game.image1}
+                      description={game.description}
+                      price={game.price}
+                    />
+                  </div>
+                )
+              })
+            ) : (
+              <AlertCustom
+                className={"light text-center"}
+                message={`${username} no tiene juegos para vender.`}
+              />
+            )}
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 

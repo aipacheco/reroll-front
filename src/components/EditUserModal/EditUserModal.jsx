@@ -11,7 +11,6 @@ import InputFile from "../InputFile/InputFile"
 const EditUserModal = ({
   isModalOpen,
   handleModal,
-  description,
   loading,
   stateMessage,
   alert,
@@ -21,7 +20,6 @@ const EditUserModal = ({
   handleChange,
   handleEdit,
   setAvatarUrl,
-  // placeholderDescription
 }) => {
   return (
     <Modal
@@ -29,7 +27,7 @@ const EditUserModal = ({
       isOpen={isModalOpen}
       toggle={handleModal}
     >
-      <div className="close-button" onClick={handleModal}>
+      <div className="close-button text-end" onClick={handleModal}>
         <CloseIcon className="clickable" />
       </div>
       {loading ? (
@@ -56,18 +54,19 @@ const EditUserModal = ({
               <div className="container centered justify-content-around mb-3">
                 {avatarUrl ? (
                   <>
-                    {" "}
-                    <img
-                      src={avatarUrl}
-                      alt="Avatar"
-                      className="image-preview"
-                    />
-                    <span
-                      className="material-symbols-outlined"
-                      onClick={() => setAvatarUrl(null)}
-                    >
-                      X
-                    </span>
+                    <div className="image-container">
+                      <img
+                        src={avatarUrl}
+                        alt="Avatar"
+                        className="image-preview"
+                      />
+                      <span
+                        className="material-symbols-outlined close-icon"
+                        onClick={() => setAvatarUrl(null)}
+                      >
+                        close
+                      </span>
+                    </div>
                   </>
                 ) : (
                   <InputFile

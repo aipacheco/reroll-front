@@ -1,7 +1,7 @@
 export const validator = (value, type) => {
   const regexString = /^[a-zA-Z0-9]+$/
   const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
-  const regexName = /^[a-zA-Z0-9 ]+$/
+  const regexName = /^[a-zA-Z0-9 áéíóúÁÉÍÓÚ]+$/
 
   switch (type) {
     case "username":

@@ -126,9 +126,9 @@ const FormGame = () => {
 
   return (
     <>
-      <div className="container centered-container">
-        <div className="card">
-          <h2 className="center-flex mb-5 mt-3">
+      <div className="container centered-container mt-3 mb-3">
+        <div className="card p-3">
+          <h2 className="center-flex mb-3 mt-3">
             Introduce los datos del juego que quieres vender
           </h2>
           {loading ? (
@@ -142,20 +142,22 @@ const FormGame = () => {
             </div>
           ) : (
             <>
-              <div className="container centered justify-content-around mb-3">
+              <div className="container container-preview  mb-3">
                 {game.image1 ? (
                   <>
-                    <img
-                      className="image-preview"
-                      src={URL.createObjectURL(game.image1)}
-                      alt="Vista previa"
-                    />
-                    <span
-                      className="material-symbols-outlined"
-                      onClick={() => handleDelete("image1")}
-                    >
-                      X
-                    </span>
+                    <div className="image-container">
+                      <img
+                        className="image-preview"
+                        src={URL.createObjectURL(game.image1)}
+                        alt="Vista previa"
+                      />
+                      <span
+                        className="material-symbols-outlined close-icon"
+                        onClick={() => handleDelete("image1")}
+                      >
+                        close
+                      </span>
+                    </div>
                   </>
                 ) : (
                   <InputFile
@@ -165,11 +167,19 @@ const FormGame = () => {
                   />
                 )}
                 {game.image2 ? (
-                  <img
-                    className="image-preview"
-                    src={URL.createObjectURL(game.image2)}
-                    alt="Vista previa"
-                  />
+                  <div className="image-container">
+                    <img
+                      className="image-preview"
+                      src={URL.createObjectURL(game.image2)}
+                      alt="Vista previa"
+                    />
+                    <span
+                      className="material-symbols-outlined close-icon"
+                      onClick={() => handleDelete("image2")}
+                    >
+                      close
+                    </span>
+                  </div>
                 ) : (
                   <InputFile
                     buttonText={"imagen 2"}
@@ -178,11 +188,19 @@ const FormGame = () => {
                   />
                 )}
                 {game.image3 ? (
-                  <img
-                    className="image-preview"
-                    src={URL.createObjectURL(game.image3)}
-                    alt="Vista previa"
-                  />
+                  <div className="image-container">
+                    <img
+                      className="image-preview"
+                      src={URL.createObjectURL(game.image3)}
+                      alt="Vista previa"
+                    />
+                    <span
+                      className="material-symbols-outlined close-icon"
+                      onClick={() => handleDelete("image3")}
+                    >
+                      close
+                    </span>
+                  </div>
                 ) : (
                   <InputFile
                     buttonText={"imagen 3"}
@@ -229,13 +247,17 @@ const FormGame = () => {
                 />
                 <div className="error">{gameError.priceError}</div>
               </div>
-              {isFormComplete && (
+              {isFormComplete ? (
                 <ButtonCustom
                   text={"Enviar"}
                   isFormComplete={isFormComplete}
                   handleSubmit={handleSubmit}
                 />
-              )}
+              ):( <ButtonCustom
+                text={"Debe rellenar todos los campos"}
+                isFormComplete={isFormComplete}
+                handleSubmit={handleSubmit}
+              />)}
             </>
           )}
         </div>

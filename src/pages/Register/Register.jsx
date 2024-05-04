@@ -39,9 +39,11 @@ const Register = () => {
   }, [user, userError])
 
   const handleChange = ({ target }) => {
+    let value =
+      target.name === "username" ? target.value.toLowerCase() : target.value
     setUser((prevState) => ({
       ...prevState,
-      [target.name]: target.value,
+      [target.name]: value,
     }))
     const error = validator(target.value, target.name)
     setUserError((prevState) => ({
@@ -97,7 +99,7 @@ const Register = () => {
         ) : (
           <div className="card card-register container">
             <div className="col-12 mb-5 mt-3">
-            <h2 className="text-center"> Registro </h2>
+              <h2 className="text-center"> Registro </h2>
 
               <div className="input-container">
                 <InputCustom

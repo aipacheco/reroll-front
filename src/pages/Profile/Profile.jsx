@@ -27,7 +27,6 @@ const Profile = () => {
   const [editProfileError, setEditProfileError] = useState({
     descriptionError: "",
   })
-  const [originalDescription, setOriginalDescription] = useState("")
   const [avatarUrl, setAvatarUrl] = useState(null)
   const token = useSelector((state) => state.auth.token)
   const decode = useSelector((state) => state.auth.decode)
@@ -127,10 +126,10 @@ const Profile = () => {
           description={description}
         />
         {edit && (
-          <div className="d-flex justify-content-end p-3">
+          <div className="d-flex justify-content-end p-1">
             {" "}
             <button className="btn btn-warning" onClick={handleModal}>
-              Editar perfil
+              <span className="material-symbols-outlined">edit_note</span>
             </button>
           </div>
         )}

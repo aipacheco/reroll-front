@@ -29,7 +29,7 @@ const GameDetail = () => {
     fetchSingleGame()
   }, [])
 
-  console.log(singleGame)
+  // console.log(singleGame)
 
   const {
     image1,

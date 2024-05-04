@@ -16,8 +16,8 @@
 }
 
 .carousel-img {
-  display: block; /* Agrega esto */
-  margin: auto; /* Agrega esto */
+  display: block; 
+  margin: auto; 
   object-fit: cover;
 }
 .carousel-inner{
@@ -27,6 +27,12 @@ button.active {
   background-color: orange !important;
   color: white;
 }
-.carousel-control-next-icon{
-color: orange !important;
+.my-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-button .material-symbols-outlined {
+  margin-left: 0.3em;
 }

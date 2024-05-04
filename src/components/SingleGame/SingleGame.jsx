@@ -25,7 +25,9 @@ const SingleGame = ({
   const handleAuthor = () => {
     navigate(`/${author}`)
   }
-
+  const handleShop = () => {
+    navigate(`/address`)
+  }
   return (
     <div className="container-game">
       <div className="card p-3">
@@ -41,16 +43,25 @@ const SingleGame = ({
           ))}
         </Carousel>
         <Card.Body>
-          <Card.Title onClick={handleAuthor} style={{ cursor: "pointer" }}>
-           <a>{author}</a> 
-          </Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">{name}</Card.Subtitle>
+          <Card.Subtitle onClick={handleAuthor} style={{ cursor: "pointer" }}>
+            <a>{author}</a>
+          </Card.Subtitle>
+          <Card.Title className="mb-2 mt-2 text-dark">{name}</Card.Title>
           <Card.Text>{description}</Card.Text>
           <Card.Text>
-            {playersMin} - {playersMax} jugadores
+            <Card.Subtitle className="text-dark">
+              Número de jugadores:{" "}
+            </Card.Subtitle>
+            {playersMin} a {playersMax} jugadores
           </Card.Text>
-          <Card.Text>{price} €</Card.Text>
-          <Button variant="primary">Comprar</Button>
+          <Card.Text>
+            <Card.Subtitle className="text-dark">Precio: </Card.Subtitle>
+            {price} €
+          </Card.Text>
+          <Button variant="warning" onClick={handleShop} className="my-button">
+            Comprar
+            <span className="material-symbols-outlined">shopping_bag</span>
+          </Button>
         </Card.Body>
       </div>
     </div>

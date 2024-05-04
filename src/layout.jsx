@@ -7,6 +7,7 @@ import Profile from "./pages/Profile/Profile"
 import GameDetail from "./pages/GameDetail/GameDetail"
 import Footer from "./components/Footer/Footer"
 import Navbar from "./components/Navbar/Navbar"
+import FormAddress from "./pages/FormAddress/FormAddress"
 
 
 
@@ -25,6 +26,7 @@ export const Layout = () => {
           <Route path="/:username" element={<Profile />} />
           <Route path="/newGame" element={<FormGame/>} />
           <Route path="/game/:id" element={<GameDetail/>} />
+          <Route path="/address" element={<FormAddress/>} />
         </Routes>
         <Footer />
       </BrowserRouter>

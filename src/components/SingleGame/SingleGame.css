@@ -1,10 +1,32 @@
+.container-game {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  height: 50em;
+  width: 35em; 
+  margin: auto; 
+  margin-top: 3em;
+  overflow: hidden;
+}
+
+.carousel-item {
+  height: 30em; 
+  max-width: 32.7em;
+  overflow: hidden;
+}
+
 .carousel-img {
-    width: 50em; 
-    height: 50em; 
-    object-fit: cover;
-  }
-  .carousel-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  display: block; /* Agrega esto */
+  margin: auto; /* Agrega esto */
+  object-fit: cover;
+}
+.carousel-inner{
+  width: 35em !important;
+}
+button.active {
+  background-color: orange !important;
+  color: white;
+}
+.carousel-control-next-icon{
+color: orange !important;
+}

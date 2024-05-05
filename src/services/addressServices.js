@@ -19,3 +19,43 @@ export const CreateAddress = async (address, token) => {
     throw error
   }
 }
+
+export const GetAddress = async (token) => {
+  try {
+    const response = await fetch(`${URL}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log("Error al obtener la dirección", error)
+    throw error
+  }
+}
+
+export const GetAddressById = async (id, token) => {
+  try {
+    const response = await fetch(`${URL}/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log("Error al obtener la dirección", error)
+    throw error
+  }
+}

@@ -29,9 +29,8 @@ const GameDetail = () => {
     fetchSingleGame()
   }, [])
 
-  // console.log(singleGame)
-
   const {
+    _id,
     image1,
     image2,
     image3,
@@ -50,6 +49,7 @@ const GameDetail = () => {
         <>
           {" "}
           <SingleGame
+            _id={_id}
             images={[
               { label: "Imagen 1", imgPath: image1 },
               { label: "Imagen 2", imgPath: image2 },

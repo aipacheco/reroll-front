@@ -5,8 +5,11 @@ import { useNavigate } from "react-router-dom"
 import Carousel from "react-bootstrap/Carousel"
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
+import { useDispatch } from "react-redux"
+import { setItemId } from "../../redux/itemSlice"
 
 const SingleGame = ({
+  _id,
   images,
   name,
   description,
@@ -17,6 +20,7 @@ const SingleGame = ({
 }) => {
   const navigate = useNavigate()
   const [activeStep, setActiveStep] = useState(0)
+  const dispatch = useDispatch()
 
   const handleSelect = (selectedIndex) => {
     setActiveStep(selectedIndex)
@@ -26,6 +30,11 @@ const SingleGame = ({
     navigate(`/${author}`)
   }
   const handleShop = () => {
+    dispatch(
+      setItemId({
+        itemId: _id,
+      })
+    )
     navigate(`/address`)
   }
   return (

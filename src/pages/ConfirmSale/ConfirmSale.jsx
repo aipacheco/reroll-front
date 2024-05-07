@@ -48,7 +48,7 @@ const ConfirmSale = () => {
       })
       setTimeout(() => {
         setAlert(false)
-        navigate("/home")
+        navigate("/")
       }, 1200)
       console.log("Error fetching address and item:", error)
     }
@@ -109,12 +109,16 @@ const ConfirmSale = () => {
   }
 
   useEffect(() => {
-    fetchAddressAndItem()
+    if (addressId && itemId) {
+      fetchAddressAndItem()
+    } else {
+      navigate("/")
+    }
   }, [])
 
   const { name, price, image1, description } = item
   const { name: addressName, lastName, city, province, streetAddress } = address
-  console.log(addressId)
+
   return (
     <>
       <ShopModal

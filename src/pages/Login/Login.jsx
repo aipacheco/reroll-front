@@ -76,7 +76,7 @@ const Login = () => {
 
         setTimeout(() => {
           setAlert(false)
-          navigate(`/${decode.username}`)
+          navigate(`/user/${decode.username}`)
         }, 1200)
       }
     } catch (error) {

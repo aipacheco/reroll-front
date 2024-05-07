@@ -24,7 +24,7 @@ export const Layout = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/:username" element={<Profile />} />
+          <Route path="/user/:username" element={<Profile />} />
           <Route path="/newGame" element={<FormGame/>} />
           <Route path="/game/:id" element={<GameDetail/>} />
           <Route path="/address" element={<FormAddress/>} />

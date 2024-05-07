@@ -10,8 +10,8 @@ const CardGame = ({image1, name, description, price, _id}) => {
   }
   return (
     <div className="center-flex">
-      <div className="card card-game mb-3 clickable"onClick={handleClick}>
-        <img src={image1} className="card-img-top img-fluid" />
+      <div className="card card-game m-2 mb-3 clickable"onClick={handleClick}>
+        <img src={image1} className="card-img-top game-img img-fluid" />
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
           <p className="card-text">

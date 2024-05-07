@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { GetProfile, UpdateProfile } from "../../services/userServices"
 import CardProfile from "../../components/CardProfile/CardProfile"
 import CardGame from "../../components/CardGame/CardGame"
@@ -31,6 +31,7 @@ const Profile = () => {
   const [avatarUrl, setAvatarUrl] = useState(null)
   const token = useSelector((state) => state.auth.token)
   const decode = useSelector((state) => state.auth.decode)
+  const Navigate = useNavigate()
 
   //hay que sacar el username de los params (la barra de navegación) para pasarlo a GetProfile
   const { username } = useParams()
@@ -54,11 +55,15 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    const canEdit = decode.username === username
-    if (canEdit) {
-      setEdit(true)
+    if (token && decode && decode.username) {
+      const canEdit = decode.username === username
+      if (canEdit) {
+        setEdit(true)
+      }
+    } else {
+      Navigate("/login")
     }
-  }, [decode.username, username])
+  }, [decode?.username, username])
 
   const handleModal = () => {
     setIsModalOpen(!isModalOpen)
@@ -112,7 +117,11 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    fetchProfile()
+    if (token) {
+      fetchProfile()
+    } else {
+      Navigate("/login")
+    }
   }, [username])
 
   // console.log(profile)
@@ -123,7 +132,7 @@ const Profile = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="container mt-5">
+        <div className="container mt-5 pb-5">
           <div className="card mb-3">
             <CardProfile
               avatar={avatar}
@@ -154,28 +163,30 @@ const Profile = () => {
             handleModal={handleModal}
             // placeholderDescription={description}
           />
-          <div className="row">
-            {userGames.length > 0 ? (
-              userGames.map((game) => {
-                return (
-                  <div className="col-12 col-md-6 col-lg-4" key={game._id}>
-                    <CardGame
-                      _id={game._id}
-                      key={game._id}
-                      name={game.name}
-                      image1={game.image1}
-                      description={game.description}
-                      price={game.price}
-                    />
-                  </div>
-                )
-              })
-            ) : (
-              <AlertCustom
-                className={"light text-center"}
-                message={`${username} no tiene juegos para vender.`}
-              />
-            )}
+          <div className="container mb-5">
+            <div className="row">
+              {userGames.length > 0 ? (
+                userGames.map((game) => {
+                  return (
+                    <div className="col-12 col-md-6 col-lg-4" key={game._id}>
+                      <CardGame
+                        _id={game._id}
+                        key={game._id}
+                        name={game.name}
+                        image1={game.image1}
+                        description={game.description}
+                        price={game.price}
+                      />
+                    </div>
+                  )
+                })
+              ) : (
+                <AlertCustom
+                  className={"light text-center"}
+                  message={`${username} no tiene juegos para vender.`}
+                />
+              )}
+            </div>
           </div>
         </div>
       )}

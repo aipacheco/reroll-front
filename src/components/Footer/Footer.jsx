@@ -22,7 +22,7 @@ const Footer = () => {
           <div className="container justify-content-around">
             <LinkButton direction={"/"} text={"Home"} />
             <LinkButton direction={"/newGame"} text={"Anunciar nuevo juego"} />
-            <LinkButton direction={`/${decode.username}`} text={"Perfil"} />
+            <LinkButton direction={`/user/${decode.username}`} text={"Perfil"} />
           </div>
         </nav>
       )}

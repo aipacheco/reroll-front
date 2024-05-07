@@ -3,24 +3,24 @@
   justify-content: center;
   align-items: center;
   height: 55em;
-  width: 35em; 
-  margin: auto; 
+  width: 35em;
+  margin: auto;
   margin-top: 3em;
   overflow: hidden;
 }
 
 .carousel-item {
-  height: 30em; 
+  height: 30em;
   max-width: 32.1em;
   overflow: hidden;
 }
 
 .carousel-img {
-  display: block; 
-  margin: auto; 
+  display: block;
+  margin: auto;
   object-fit: cover;
 }
-.carousel-inner{
+.carousel-inner {
   width: 35em !important;
 }
 button.active {
@@ -36,3 +36,4 @@ button.active {
 .my-button .material-symbols-outlined {
   margin-left: 0.3em;
 }
+

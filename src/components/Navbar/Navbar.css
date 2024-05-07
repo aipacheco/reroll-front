@@ -6,7 +6,6 @@
   background-color: rgb(255, 255, 255) !important;
 }
 .h1-home {
-  font-family: "Parisienne", cursive;
   font-style: italic;
   font-weight: bold;
   font-size: 3em;
@@ -16,4 +15,7 @@
   position: absolute;
   right: 2em; 
   top: 1em; 
+}
+.h1-home:hover {
+  transform: scale(1.03);
 }

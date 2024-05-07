@@ -2,7 +2,7 @@
 import "./ButtonCustom.css"
 const ButtonCustom = ({ text, handleSubmit, isFormComplete}) => {
   return (
-    <div className="center-flex">
+    <div className="centered">
       <button
         type="button"
         className="btn btn-warning"

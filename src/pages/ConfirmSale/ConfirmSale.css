@@ -1,0 +1,13 @@
+.address-card{
+    margin: auto;
+    width: 28em;
+}
+.container-confirm{
+    width: 30em;
+}
+.confirm-card{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}

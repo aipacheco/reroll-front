@@ -198,6 +198,8 @@ const FormAddress = () => {
               handleModal={handleModal}
               handleSelectAddress={handleSelectAddress}
               handleConfirm={handleConfirm}
+              text={"¿Quieres confirmar esta dirección?"}
+              textButton={"Confirmar dirección"}
             />
             <div className="card container mt-3">
               <div className="col-12">

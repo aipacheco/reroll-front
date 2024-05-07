@@ -5,11 +5,17 @@ import { useParams } from "react-router-dom"
 import { useEffect } from "react"
 import SingleGame from "../../components/SingleGame/SingleGame"
 import Spinner from "../../components/Spinner/Spinner"
+import AlertCustom from "../../components/AlertCustom/AlertCustom"
 
 const GameDetail = () => {
   const [loading, setLoading] = useState(false)
   const [singleGame, setSingleGame] = useState({})
   const [authorName, setAuthorName] = useState("")
+  const [stateMessage, setStateMessage] = useState({
+    message: "",
+    className: "",
+  })
+  const [alert, setAlert] = useState(false)
   const { id } = useParams()
 
   const fetchSingleGame = async () => {
@@ -18,8 +24,14 @@ const GameDetail = () => {
       const data = await getSingleGame(id)
       setSingleGame(data.data)
       setAuthorName(data.data.author.username)
+      setLoading(false)
     } catch (error) {
       setLoading(false)
+      setAlert(true)
+      setStateMessage({
+        message: error.message,
+        className: "alert-danger",
+      })
       console.log(error)
     }
     setLoading(false)
@@ -45,6 +57,13 @@ const GameDetail = () => {
     <>
       {loading ? (
         <Spinner />
+      ) : alert ? (
+        <div className="d-flex justify-content-center mt-3">
+          <AlertCustom
+            className={stateMessage.className}
+            message={stateMessage.message}
+          />
+        </div>
       ) : (
         <>
           {" "}

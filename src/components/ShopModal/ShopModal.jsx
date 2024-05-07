@@ -3,7 +3,15 @@ import CloseIcon from "@mui/icons-material/Close"
 import ButtonCustom from "../ButtonCustom/ButtonCustom"
 import { Modal } from "reactstrap"
 
-const ShopModal = ({ isModalOpen, handleModal, handleConfirm }) => {
+const ShopModal = ({
+  isModalOpen,
+  handleModal,
+  handleConfirm,
+  text,
+  cancel,
+  handleCancel,
+  textButton,
+}) => {
   return (
     <>
       <Modal
@@ -17,10 +25,15 @@ const ShopModal = ({ isModalOpen, handleModal, handleConfirm }) => {
 
         <>
           <div className="container">
-            <div className="mb-2">
-              ¿Deseas seleccionar esta dirección?
+            <div className="p-3">{text}</div>
+            <div className="d-flex justify-content-center mb-3">
+              {cancel && (
+                <button className="btn btn-danger m-1" onClick={handleCancel}>
+                  No
+                </button>
+              )}
               <ButtonCustom
-                text={"seleccionar dirección"}
+                text={textButton}
                 isFormComplete={true}
                 handleSubmit={handleConfirm}
               />

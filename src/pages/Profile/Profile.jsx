@@ -168,7 +168,7 @@ const Profile = () => {
               {userGames.length > 0 ? (
                 userGames.map((game) => {
                   return (
-                    <div className="col-12 col-md-6 col-lg-4" key={game._id}>
+                    <div className="col-12 col-md-6 col-lg-4 p-3 centered" key={game._id}>
                       <CardGame
                         _id={game._id}
                         key={game._id}

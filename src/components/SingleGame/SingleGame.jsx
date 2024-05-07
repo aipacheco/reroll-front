@@ -27,7 +27,7 @@ const SingleGame = ({
   }
 
   const handleAuthor = () => {
-    navigate(`/${author}`)
+    navigate(`/user/${author}`)
   }
   const handleShop = () => {
     dispatch(

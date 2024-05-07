@@ -2,7 +2,7 @@
   display: block;
   justify-content: center;
   align-items: center;
-  height: 55em;
+  height: 57em;
   width: 35em;
   margin: auto;
   margin-top: 3em;
@@ -12,6 +12,7 @@
 .carousel-item {
   height: 30em;
   max-width: 32.1em;
+  padding: 1em;
   overflow: hidden;
 }
 

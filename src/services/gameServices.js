@@ -46,3 +46,17 @@ export const getSingleGame = async (id) => {
     throw error
   }
 }
+
+export const GetGames = async () => {
+  try {
+    const response = await fetch(`${URL}`)
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}

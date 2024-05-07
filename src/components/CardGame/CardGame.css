@@ -1,13 +1,15 @@
 .card-game {
-  width: 21em;
+  width: 25em;
   height: 100%;
   border-color: orange;
+  margin: 1em;
 }
 .game-img {
-    height: auto;
+    height: 20em;
     width: auto; 
+    padding: 1em;
     object-fit: cover; 
   }
   .card-game:hover{
-    transform: scale(1.03);
+    transform: scale(1.02);
   }

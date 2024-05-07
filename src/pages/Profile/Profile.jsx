@@ -116,6 +116,9 @@ const Profile = () => {
     }
   }
 
+  const handleAddress = () => {
+    Navigate("/address")
+  }
   useEffect(() => {
     if (token) {
       fetchProfile()
@@ -133,21 +136,14 @@ const Profile = () => {
         <Spinner />
       ) : (
         <div className="container mt-5 pb-5">
-          <div className="card mb-3">
             <CardProfile
               avatar={avatar}
               username={username}
               description={description}
+              handleModal={handleModal}
+              edit={edit}
+              handleAddress={handleAddress}
             />
-            {edit && (
-              <div className="d-flex justify-content-end p-1">
-                {" "}
-                <button className="btn btn-warning" onClick={handleModal}>
-                  <span className="material-symbols-outlined">edit_note</span>
-                </button>
-              </div>
-            )}
-          </div>
           <EditUserModal
             loading={loading}
             stateMessage={stateMessage}

@@ -6,7 +6,7 @@ const InputSearch = ({ label, type, name, handleChange, placeholder }) => {
   return (
     <>
       <label className="form-label">{label}</label>
-      <div className="input-container">
+      <div className="input-container input-search">
         <input
           type={type}
           name={name}

@@ -44,6 +44,7 @@ const FormAddress = () => {
   const [selectedAddressId, setSelectedAddressId] = useState(null)
   const dispatch = useDispatch()
   const token = useSelector((state) => state.auth.token)
+  const itemId = useSelector((state) => state.item.itemId)
 
   const fetchAddress = async () => {
     setLoading(true)
@@ -85,6 +86,8 @@ const FormAddress = () => {
   useEffect(() => {
     if (fetchedAddress.length === 0) {
       setFormVisible(true)
+    } else {
+      setFormVisible(false)
     }
   }, [fetchedAddress])
 
@@ -140,8 +143,12 @@ const FormAddress = () => {
     setSelectedAddressId(id)
     setIsModalOpen(true)
   }
+
+  const handleEditAddress = (id) => {
+    navigate(`/edit/address/${id}`)
+  }
+
   const handleConfirm = () => {
-    console.log(selectedAddressId)
     dispatch(
       setAddressId({
         addressId: selectedAddressId,
@@ -160,7 +167,7 @@ const FormAddress = () => {
         {loading ? (
           <Spinner />
         ) : alert ? (
-          <div className="d-flex justify-content-center mt-3">
+          <div className="centered-container">
             <AlertCustom
               className={stateMessage.className}
               message={stateMessage.message}
@@ -172,7 +179,7 @@ const FormAddress = () => {
               <div className="card-grid mt-3">
                 {fetchedAddress.map((address) => {
                   return (
-                    <div className="card-container card" key={address._id}>
+                    <div className="card-container card p-3" key={address._id}>
                       <CardAddress
                         key={address._id}
                         name={address.name}
@@ -182,12 +189,28 @@ const FormAddress = () => {
                         cp={address.cp}
                         province={address.province}
                       />
-                      <button
-                        className="btn btn-outline-warning"
-                        onClick={() => handleSelectAddress(address._id)}
-                      >
-                        Seleccionar
-                      </button>
+                      <div className="centered">
+                        {itemId && (
+                          <button
+                            className="btn btn-outline-warning my-button me-3"
+                            onClick={() => handleSelectAddress(address._id)}
+                          >
+                            Seleccionar
+                            <span className="material-symbols-outlined">
+                              done
+                            </span>
+                          </button>
+                        )}
+                        <button
+                          className="btn btn-outline-warning my-button"
+                          onClick={() => handleEditAddress(address._id)}
+                        >
+                          Editar
+                          <span className="material-symbols-outlined">
+                            edit
+                          </span>
+                        </button>
+                      </div>
                     </div>
                   )
                 })}
@@ -201,7 +224,7 @@ const FormAddress = () => {
               text={"¿Quieres confirmar esta dirección?"}
               textButton={"Confirmar dirección"}
             />
-            <div className="card container mt-3">
+            <div className="card container mt-5 p-3">
               <div className="col-12">
                 <div
                   className="header-container clickable"

@@ -47,6 +47,7 @@ const Home = () => {
           type="text"
           value={search}
           handleChange={(e) => setSearch(e.target.value)}
+          placeholder="Buscar..."
         />
       </div>
       <div className="row mb-5">

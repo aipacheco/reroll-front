@@ -16,6 +16,7 @@
   align-items: center;
   height: 100%;
 }
+
 .centered {
   display: flex;
   justify-content: center;

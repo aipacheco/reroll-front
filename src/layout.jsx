@@ -9,6 +9,7 @@ import Footer from "./components/Footer/Footer"
 import Navbar from "./components/Navbar/Navbar"
 import FormAddress from "./pages/FormAddress/FormAddress"
 import ConfirmSale from "./pages/ConfirmSale/ConfirmSale"
+import GameEdit from "./pages/GameEdit/GameEdit"
 
 
 
@@ -29,6 +30,7 @@ export const Layout = () => {
           <Route path="/game/:id" element={<GameDetail/>} />
           <Route path="/address" element={<FormAddress/>} />
           <Route path="/confirm" element={<ConfirmSale/>} />
+          <Route path="/game/edit/:id" element={<GameEdit/>}/>
         </Routes>
         <Footer />
       </BrowserRouter>

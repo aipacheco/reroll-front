@@ -1,15 +1,11 @@
 /* eslint-disable react/prop-types */
 import "./SingleGame.css"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 import Carousel from "react-bootstrap/Carousel"
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
-import { useDispatch } from "react-redux"
-import { setItemId } from "../../redux/itemSlice"
 
 const SingleGame = ({
-  _id,
   images,
   name,
   description,
@@ -17,26 +13,17 @@ const SingleGame = ({
   playersMax,
   price,
   author,
+  handleAuthor,
+  handleShop,
+  buttonText,
+  symbol
 }) => {
-  const navigate = useNavigate()
   const [activeStep, setActiveStep] = useState(0)
-  const dispatch = useDispatch()
 
   const handleSelect = (selectedIndex) => {
     setActiveStep(selectedIndex)
   }
 
-  const handleAuthor = () => {
-    navigate(`/user/${author}`)
-  }
-  const handleShop = () => {
-    dispatch(
-      setItemId({
-        itemId: _id,
-      })
-    )
-    navigate(`/address`)
-  }
   return (
     <div className="container-game">
       <div className="card p-3">
@@ -56,20 +43,20 @@ const SingleGame = ({
             <a>{author}</a>
           </Card.Subtitle>
           <Card.Title className="mb-2 mt-2 text-dark">{name}</Card.Title>
-          <Card.Text>{description}</Card.Text>
-          <Card.Text>
+          <Card.Body>{description}</Card.Body>
+          <Card.Body>
             <Card.Subtitle className="text-dark">
               Número de jugadores:{" "}
             </Card.Subtitle>
             {playersMin} a {playersMax} jugadores
-          </Card.Text>
-          <Card.Text>
+          </Card.Body>
+          <Card.Body>
             <Card.Subtitle className="text-dark">Precio: </Card.Subtitle>
             {price} €
-          </Card.Text>
+          </Card.Body>
           <Button variant="warning" onClick={handleShop} className="my-button">
-            Comprar
-            <span className="material-symbols-outlined">shopping_bag</span>
+            {buttonText}
+            <span className="material-symbols-outlined">{symbol}</span>
           </Button>
         </Card.Body>
       </div>

@@ -6,6 +6,9 @@ import { useEffect } from "react"
 import SingleGame from "../../components/SingleGame/SingleGame"
 import Spinner from "../../components/Spinner/Spinner"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
+import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { setItemId } from "../../redux/itemSlice"
 
 const GameDetail = () => {
   const [loading, setLoading] = useState(false)
@@ -16,6 +19,9 @@ const GameDetail = () => {
     className: "",
   })
   const [alert, setAlert] = useState(false)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const decode = useSelector((state) => state.auth.decode)
   const { id } = useParams()
 
   const fetchSingleGame = async () => {
@@ -36,7 +42,21 @@ const GameDetail = () => {
     }
     setLoading(false)
   }
+  const handleShop = () => {
+    dispatch(
+      setItemId({
+        itemId: _id,
+      })
+    )
+    navigate(`/address`)
+  }
+  const handleEdit = () => {
+    navigate(`/game/edit/${_id}`)
+  }
 
+  const handleAuthor = () => {
+    navigate(`/user/${authorName}`)
+  }
   useEffect(() => {
     fetchSingleGame()
   }, [])
@@ -80,6 +100,12 @@ const GameDetail = () => {
             playersMax={playersMax}
             price={price}
             author={authorName}
+            handleAuthor={handleAuthor}
+            handleShop={
+              decode.username === authorName ? handleEdit : handleShop
+            }
+            buttonText={decode.username === authorName ? "Editar" : "Comprar"}
+            symbol={decode.username === authorName ? "edit" : "shopping_cart"}
           />{" "}
         </>
       )}

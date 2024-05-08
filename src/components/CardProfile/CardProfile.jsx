@@ -3,7 +3,7 @@ import "./CardProfile.css"
 
 const CardProfile = ({ avatar, username, description, edit, handleModal, handleAddress }) => {
   return (
-    <div className="card">
+    <div className="card p-1">
       <div className="row g-0">
         <div className="col-md-4 mt-2 mb-2 center-flex">
           <img src={avatar} className="profile-img img-fluid" />

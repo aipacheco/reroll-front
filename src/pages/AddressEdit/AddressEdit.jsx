@@ -178,7 +178,7 @@ const AddressEdit = () => {
               />
               <div className="error">{addressError.cityError}</div>{" "}
             </div>
-            <SelectProvince value={province} onProvinceChange={handleChange} />
+            <SelectProvince userProvince={province} onProvinceChange={handleChange} />
             <div className="input-container">
               <InputCustom
                 label={"Código postal"}

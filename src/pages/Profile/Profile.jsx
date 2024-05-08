@@ -91,29 +91,26 @@ const Profile = () => {
     }
   }
   const handleEdit = async () => {
-    // setLoading(true)
+    setLoading(true)
     try {
-      const profile = {
+      const profileToUpdate = {
         avatar: avatarFile?.avatar,
+        description: editProfile.description || profile.description,
       }
-      if (editProfile.description !== null) {
-        profile.description = editProfile.description
-      } else {
-        profile.description = profile.description
-      }
-      const updated = await UpdateProfile(username, profile, token)
+
+      const updated = await UpdateProfile(username, profileToUpdate, token)
       setProfile(updated.data)
       handleModal()
-      // setLoading(false)
+      setLoading(false)
     } catch (error) {
       console.log("Error updatinging profile:", error)
       setLoading(false)
       setAlert(true)
       setStateMessage({
         message: `${error}`,
-        className: "danger",
       })
     }
+    setLoading(false)
   }
 
   const handleAddress = () => {
@@ -136,14 +133,14 @@ const Profile = () => {
         <Spinner />
       ) : (
         <div className="container mt-5 pb-5">
-            <CardProfile
-              avatar={avatar}
-              username={username}
-              description={description}
-              handleModal={handleModal}
-              edit={edit}
-              handleAddress={handleAddress}
-            />
+          <CardProfile
+            avatar={avatar}
+            username={username}
+            description={description}
+            handleModal={handleModal}
+            edit={edit}
+            handleAddress={handleAddress}
+          />
           <EditUserModal
             loading={loading}
             stateMessage={stateMessage}
@@ -164,7 +161,10 @@ const Profile = () => {
               {userGames.length > 0 ? (
                 userGames.map((game) => {
                   return (
-                    <div className="col-12 col-md-6 col-lg-4 p-3 centered" key={game._id}>
+                    <div
+                      className="col-12 col-md-6 col-lg-4 p-3 centered"
+                      key={game._id}
+                    >
                       <CardGame
                         _id={game._id}
                         key={game._id}

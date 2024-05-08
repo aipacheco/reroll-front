@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import "./SelectProvince.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-const SelectProvince = ({ onProvinceChange , value}) => {
+const SelectProvince = ({ onProvinceChange, userProvince }) => {
   const provinces = [
     "Álava",
     "Albacete",
@@ -56,6 +56,12 @@ const SelectProvince = ({ onProvinceChange , value}) => {
     "Zaragoza",
   ]
   const [selectedProvince, setSelectedProvince] = useState("")
+
+  useEffect(() => {
+    if (userProvince) {
+      setSelectedProvince(userProvince)
+    }
+  }, [userProvince])
 
   const handleChange = ({target}) => {
     setSelectedProvince(target.value)

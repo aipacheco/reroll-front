@@ -18,10 +18,10 @@ export const GetProfile = async (username) => {
 }
 
 export const UpdateProfile = async (username, profile, token) => {
-   //cuando hay imágenes de por medio, hay que hacer un formdata
-   const formdata = new FormData()
-   formdata.append("avatar", profile.avatar)
-   formdata.append("description", profile.description)
+  //cuando hay imágenes de por medio, hay que hacer un formdata
+  const formdata = new FormData()
+  formdata.append("avatar", profile.avatar)
+  formdata.append("description", profile.description)
   try {
     const response = await fetch(`${URL}/${username}`, {
       method: "PUT",
@@ -34,7 +34,6 @@ export const UpdateProfile = async (username, profile, token) => {
     if (!data.success) {
       throw new Error(data.message)
     }
-    console.log(data)
     return data
   } catch (error) {
     console.log(error)

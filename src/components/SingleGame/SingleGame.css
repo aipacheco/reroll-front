@@ -1,10 +1,40 @@
+.container-game {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  height: 60em;
+  width: 35em;
+  margin: auto;
+  margin-top: 3em;
+  overflow: hidden;
+}
+
+.carousel-item {
+  height: 30em;
+  max-width: 32.1em;
+  padding: 1em;
+  overflow: hidden;
+}
+
 .carousel-img {
-    width: 50em; 
-    height: 50em; 
-    object-fit: cover;
-  }
-  .carousel-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  display: block;
+  margin: auto;
+  object-fit: cover;
+}
+.carousel-inner {
+  width: 35em !important;
+}
+button.active {
+  background-color: orange !important;
+  color: white;
+}
+.my-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-button .material-symbols-outlined {
+  margin-left: 0.3em;
+}
+

@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom"
 import "./Navbar.css"
 import { useDispatch, useSelector } from "react-redux"
 import { clearAuthToken } from "../../redux/authSlice"
+import { clearItemId } from "../../redux/itemSlice"
+import { clearAddressId } from "../../redux/addressSlice"
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -10,6 +12,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(clearAuthToken())
+    dispatch(clearItemId())
+    dispatch(clearAddressId())
     navigate("/login", { replace: true })
   }
 
@@ -24,8 +28,8 @@ const Navbar = () => {
 
         {token && (
           <div className="logout-button-container">
-            <button className="btn btn-warning material-symbols-outlined"onClick={handleLogout}>
-              logout
+            <button className="btn btn-outline-warning my-button"onClick={handleLogout}>
+           Logout <span className="material-symbols-outlined">logout</span>
             </button>
           </div>
         )}

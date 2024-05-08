@@ -76,7 +76,7 @@ const Login = () => {
 
         setTimeout(() => {
           setAlert(false)
-          navigate(`/${decode.username}`)
+          navigate(`/user/${decode.username}`)
         }, 1200)
       }
     } catch (error) {
@@ -98,7 +98,6 @@ const Login = () => {
   return (
     <>
       <div className="centered-container">
-          
         {loading ? (
           <Spinner />
         ) : alert ? (
@@ -111,7 +110,7 @@ const Login = () => {
         ) : (
           <div className="card card-register container">
             <div className="col-12 mb-5 mt-3">
-            <h2 className="text-center"> Login </h2>
+              <h2 className="text-center"> Login </h2>
               <div className="input-container">
                 <InputCustom
                   label={"Email"}

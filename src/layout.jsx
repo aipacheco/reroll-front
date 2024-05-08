@@ -7,6 +7,10 @@ import Profile from "./pages/Profile/Profile"
 import GameDetail from "./pages/GameDetail/GameDetail"
 import Footer from "./components/Footer/Footer"
 import Navbar from "./components/Navbar/Navbar"
+import FormAddress from "./pages/FormAddress/FormAddress"
+import ConfirmSale from "./pages/ConfirmSale/ConfirmSale"
+import GameEdit from "./pages/GameEdit/GameEdit"
+import AddressEdit from "./pages/AddressEdit/AddressEdit"
 
 
 
@@ -22,9 +26,13 @@ export const Layout = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/:username" element={<Profile />} />
+          <Route path="/user/:username" element={<Profile />} />
           <Route path="/newGame" element={<FormGame/>} />
           <Route path="/game/:id" element={<GameDetail/>} />
+          <Route path="/address" element={<FormAddress/>} />
+          <Route path="/confirm" element={<ConfirmSale/>} />
+          <Route path="/game/edit/:id" element={<GameEdit/>}/>
+          <Route path="/edit/address/:id" element={<AddressEdit/>}/>
         </Routes>
         <Footer />
       </BrowserRouter>

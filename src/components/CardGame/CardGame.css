@@ -1,9 +1,16 @@
 .card-game {
-  width: 20em;
+  width: 25em;
   height: 100%;
   border-color: orange;
+  margin: 1em;
+  min-width: 22em;
 }
-.card-img-top {
-    height: 15em; 
+.game-img {
+    height: 20em;
+    width: auto; 
+    padding: 1em;
     object-fit: cover; 
+  }
+  .card-game:hover{
+    transform: scale(1.02);
   }

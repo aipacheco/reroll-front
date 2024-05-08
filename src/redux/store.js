@@ -1,14 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit"
 import authReducer from "./authSlice"
+import itemReducer from "./itemSlice"
+import addressReducer from "./addressSlice"
 import { combineReducers } from "redux"
 import storage from "redux-persist/lib/storage"
 import { persistReducer, persistStore } from "redux-persist"
 import { encryptTransform } from "redux-persist-transform-encrypt"
 
-
 const rootReducer = combineReducers({
   auth: authReducer,
-  // añadir más reducers si los hay
+  item: itemReducer,
+  address: addressReducer,
 })
 
 const persistConfig = {

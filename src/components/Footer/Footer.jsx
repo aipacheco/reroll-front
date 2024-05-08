@@ -18,11 +18,11 @@ const Footer = () => {
           </div>
         </nav>
       ): (
-        <nav className="navbar bg-body-secondary fixed-bottom footer">
+        <nav className="navbar bg-body-secondary fixed-bottom footer mt-5">
           <div className="container justify-content-around">
-            <LinkButton direction={"/"} text={"Home"} />
-            <LinkButton direction={"/newGame"} text={"Anunciar nuevo juego"} />
-            <LinkButton direction={`/${decode.username}`} text={"Perfil"} />
+            <LinkButton direction={"/"} text={"Home"} icon={"home"}/>
+            <LinkButton direction={"/newGame"} text={"Nuevo juego"} icon={"add"} />
+            <LinkButton direction={`/user/${decode.username}`} text={"Perfil"} icon={"person"} />
           </div>
         </nav>
       )}

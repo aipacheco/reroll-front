@@ -34,11 +34,14 @@ const Select = ({ onCategoryChange }) => {
         onChange={handleChange}
       >
         <option disabled>Elije una opción</option>
-        {category.map((item, index) => (
-          <option key={index} value={item._id}>
-            {item.name.toUpperCase()}
-          </option>
-        ))}
+        {category
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((item, index) => (
+            <option key={index} value={item._id}>
+              {item.name.charAt(0).toUpperCase() +
+                item.name.slice(1).toLowerCase()}
+            </option>
+          ))}
       </select>
     </div>
   )

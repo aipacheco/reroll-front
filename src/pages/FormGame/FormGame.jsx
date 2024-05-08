@@ -255,7 +255,7 @@ const FormGame = () => {
                 />
               ) : (
                 <ButtonCustom
-                  text={"Debe rellenar todos los campos"}
+                  text={"Debes rellenar todos los campos"}
                   isFormComplete={isFormComplete}
                   handleSubmit={handleSubmit}
                 />

@@ -59,3 +59,24 @@ export const GetAddressById = async (id, token) => {
     throw error
   }
 }
+
+export const UpdateAddress = async (id, address, token) => {
+  try {
+    const response = await fetch(`${URL}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(address),
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log("Error al actualizar la dirección", error)
+    throw error
+  }
+}

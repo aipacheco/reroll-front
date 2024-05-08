@@ -3,6 +3,7 @@
   height: 100%;
   border-color: orange;
   margin: 1em;
+  min-width: 22em;
 }
 .game-img {
     height: 20em;

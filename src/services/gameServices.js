@@ -60,3 +60,33 @@ export const GetGames = async () => {
     throw error
   }
 }
+
+export const UpdateGame = async (id, data, token) => {
+  const formdata = new FormData()
+  formdata.append("name", data.name)
+  formdata.append("playersMin", data.playersMin)
+  formdata.append("playersMax", data.playersMax)
+  formdata.append("category", data.category)
+  formdata.append("description", data.description)
+  formdata.append("price", data.price)
+  formdata.append("image1", data.image1)
+  formdata.append("image2", data.image2)
+  formdata.append("image3", data.image3)
+  try {
+    const response = await fetch(`${URL}/${id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formdata,
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}

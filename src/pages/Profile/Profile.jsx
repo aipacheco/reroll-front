@@ -42,6 +42,7 @@ const Profile = () => {
       const myProfile = await GetProfile(username)
       setProfile(myProfile.data)
       setUserGames(myProfile.data.games)
+      setAvatarUrl(myProfile.data.avatar)
     } catch (error) {
       console.log("Error fetching profile:", error)
       setLoading(false)

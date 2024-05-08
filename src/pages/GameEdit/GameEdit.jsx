@@ -37,6 +37,9 @@ const GameEdit = () => {
     message: "",
     className: "",
   })
+  const [image1Url, setImage1Url] = useState(null)
+  const [image2Url, setImage2Url] = useState(null)
+  const [image3Url, setImage3Url] = useState(null)
   const [alert, setAlert] = useState(false)
   const token = useSelector((state) => state.auth.token)
   const { id } = useParams()
@@ -45,6 +48,9 @@ const GameEdit = () => {
     try {
       const game = await getSingleGame(id)
       setGame(game.data)
+      setImage1Url(game.data.image1)
+      setImage2Url(game.data.image2)
+      setImage3Url(game.data.image3)
     } catch (error) {
       console.log(error)
     }
@@ -83,6 +89,16 @@ const GameEdit = () => {
         ...prevState,
         [target.name]: target.files[0],
       }))
+      if (target.name === "image1") {
+        const fileUrl = URL.createObjectURL(target.files[0])
+        setImage1Url(fileUrl)
+      } else if (target.name === "image2") {
+        const fileUrl = URL.createObjectURL(target.files[0])
+        setImage2Url(fileUrl)
+      } else if (target.name === "image3") {
+        const fileUrl = URL.createObjectURL(target.files[0])
+        setImage3Url(fileUrl)
+      }
     } else {
       setGame((prevState) => ({
         ...prevState,
@@ -171,22 +187,20 @@ const GameEdit = () => {
                 Puedes editar tu juego aquí
               </h2>
               <div className="container container-preview mb-3">
-                {image1 ? (
-                  <>
-                    <div className="image-container">
-                      <img
-                        src={image1}
-                        alt="Image1"
-                        className="image-preview"
-                      />
-                      <span
-                        className="material-symbols-outlined close-icon"
-                        onClick={() => handleDelete("image1")}
-                      >
-                        close
-                      </span>
-                    </div>
-                  </>
+                {image1Url ? (
+                  <div className="image-container">
+                    <img
+                      src={image1Url}
+                      alt="Image1"
+                      className="image-preview"
+                    />
+                    <span
+                      className="material-symbols-outlined close-icon"
+                      onClick={() => setImage1Url(null)}
+                    >
+                      close
+                    </span>
+                  </div>
                 ) : (
                   <InputFile
                     buttonText={"imagen 1"}
@@ -195,22 +209,20 @@ const GameEdit = () => {
                   />
                 )}
 
-                {image2 ? (
-                  <>
-                    <div className="image-container">
-                      <img
-                        src={image2}
-                        alt="Image2"
-                        className="image-preview"
-                      />
-                      <span
-                        className="material-symbols-outlined close-icon"
-                        onClick={() => handleDelete("image2")}
-                      >
-                        close
-                      </span>
-                    </div>
-                  </>
+                {image2Url ? (
+                  <div className="image-container">
+                    <img
+                      src={image2Url}
+                      alt="Image2"
+                      className="image-preview"
+                    />
+                    <span
+                      className="material-symbols-outlined close-icon"
+                      onClick={() => setImage2Url(null)}
+                    >
+                      close
+                    </span>
+                  </div>
                 ) : (
                   <InputFile
                     buttonText={"imagen 2"}
@@ -218,23 +230,20 @@ const GameEdit = () => {
                     handleChange={handleChange}
                   />
                 )}
-
-                {image3 ? (
-                  <>
-                    <div className="image-container">
-                      <img
-                        src={image3}
-                        alt="Image3"
-                        className="image-preview"
-                      />
-                      <span
-                        className="material-symbols-outlined close-icon"
-                        onClick={() => handleDelete("image3")}
-                      >
-                        close
-                      </span>
-                    </div>
-                  </>
+                {image3Url ? (
+                  <div className="image-container">
+                    <img
+                      src={image3Url}
+                      alt="Image3"
+                      className="image-preview"
+                    />
+                    <span
+                      className="material-symbols-outlined close-icon"
+                      onClick={() => setImage3Url(null)}
+                    >
+                      close
+                    </span>
+                  </div>
                 ) : (
                   <InputFile
                     buttonText={"imagen 3"}

@@ -119,24 +119,7 @@ const GameEdit = () => {
     }))
   }
 
-  const handleDelete = (imageName) => {
-    setGame({
-      ...game,
-      [imageName]: null,
-    })
-  }
-
-  const {
-    name,
-    playersMin,
-    playersMax,
-    description,
-    price,
-    image1,
-    image2,
-    image3,
-    category,
-  } = game
+  const { name, playersMin, playersMax, description, price, category } = game
 
   const handleSubmit = async () => {
     setLoading(true)

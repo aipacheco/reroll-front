@@ -29,7 +29,7 @@ const Navbar = () => {
         {token && (
           <div className="logout-button-container">
             <button className="btn btn-outline-warning my-button"onClick={handleLogout}>
-           Logout <span className="material-symbols-outlined">logout</span>
+           Exit <span className="material-symbols-outlined">logout</span>
             </button>
           </div>
         )}

@@ -23,3 +23,8 @@
     bottom: 0;
     background-color: white;
   }
+  .more{
+    position: absolute;
+    bottom: 0;
+    right:1em ;
+  }

@@ -17,6 +17,9 @@ const CardGame = ({ image1, name, description, price, _id }) => {
         <div className="price-text">
           <p> {price}€</p>
         </div>
+        <div className="more">
+          <p className="text-warning">Ver más...</p>
+        </div>
       </div>
     </div>
   )

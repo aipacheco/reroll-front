@@ -3,7 +3,7 @@ import "./Select.css"
 import { useEffect, useState } from "react"
 import { getCategories } from "../../services/categoryServices"
 
-const Select = ({ onCategoryChange, gameCategory }) => {
+const Select = ({ onCategoryChange, gameCategory, hidden }) => {
   const [category, setCategory] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("")
 
@@ -33,13 +33,15 @@ const Select = ({ onCategoryChange, gameCategory }) => {
 
   return (
     <div className="input-group mb-3 mt-3">
-      <label className="input-group-text">Categoría</label>
+      <label className={`input-group-text ${hidden}`} >Categoría</label>
       <select
         className="form-select"
         value={selectedCategory}
         onChange={handleChange}
       >
-        <option disabled>Elije una opción</option>
+        <option disabled selected value="">
+          Elije una opción
+        </option>
         {Array.isArray(category) &&
           category
             .sort((a, b) => a.name.localeCompare(b.name))

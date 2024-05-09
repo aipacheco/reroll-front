@@ -125,7 +125,7 @@ const FormGame = () => {
   }
 
   return (
-    <>
+    <div className="centered-container">
       {loading ? (
         <Spinner />
       ) : alert ? (
@@ -264,7 +264,7 @@ const FormGame = () => {
           </div>
         </>
       )}
-    </>
+    </div>
   )
 }
 

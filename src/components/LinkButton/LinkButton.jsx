@@ -7,8 +7,11 @@ export const LinkButton = ({ direction, text, icon }) => {
     <div>
       <div className="center-flex me-5">
         <Link to={`${direction}`}>
-          <button id="link-button" className="btn btn-outline-warning my-button">
-            {text}
+          <button
+            id="link-button"
+            className="btn btn-outline-warning my-button"
+          >
+            <span className="button-text">{text}</span>
             <span className="material-symbols-outlined">{icon}</span>
           </button>
         </Link>

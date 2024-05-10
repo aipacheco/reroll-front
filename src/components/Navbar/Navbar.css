@@ -21,6 +21,11 @@
 }
 .admin{
   position: absolute;
- left: 2em; 
+ right:  10em; 
   top: 1em; 
+}
+@media (max-width: 600px) {
+  .nav-item-mobile {
+    margin-left: 0.5em; 
+  }
 }

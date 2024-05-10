@@ -78,10 +78,10 @@ const ConfirmSale = () => {
         message: error.message,
         className: "danger",
       })
-      // setTimeout(() => {
-      //   setAlert(false)
-      //   navigate("/games")
-      // }, 1200)
+      setTimeout(() => {
+        setAlert(false)
+        navigate("/games")
+      }, 1200)
       console.log("Error transaccion", error)
     }
   }
@@ -130,7 +130,7 @@ const ConfirmSale = () => {
         cancel={true}
         handleCancel={handleCancel}
       />
-      <div className="container">
+      <div className="centered-container">
         {loading ? (
           <Spinner />
         ) : alert ? (
@@ -142,17 +142,19 @@ const ConfirmSale = () => {
           </div>
         ) : (
           <div className="confirm-card">
-            <div className="container">
+            <div className="">
               <h5 className="centered p-3">
                 Comprueba que estos son los datos correctos
               </h5>
-              <CardGame
-                name={name}
-                price={price}
-                image1={image1}
-                description={description}
-                _id={itemId}
-              />
+              <div className="container-sale">
+                <CardGame
+                  name={name}
+                  price={price}
+                  image1={image1}
+                  description={description}
+                  _id={itemId}
+                />
+              </div>
               <div className="card address-card">
                 <CardAddress
                   name={addressName}
@@ -162,13 +164,13 @@ const ConfirmSale = () => {
                   streetAddress={streetAddress}
                 />
               </div>
-              <div className="container container-confirm mt-3">
+              <div className="container container-confirm mt-3 p-3">
                 <AlertCustom
                   className="light"
                   message="Por favor, comprueba que los datos son correctos. No se podrá modificar la dirección una vez confirmada la venta."
                 />
               </div>
-              <div className="container centered mt-3">
+              <div className="container centered mt-3 pb-5">
                 <button
                   className="btn btn-outline-danger m-1"
                   onClick={handleModal}

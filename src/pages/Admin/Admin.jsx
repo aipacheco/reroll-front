@@ -7,8 +7,9 @@ import DataTable from "react-data-table-component"
 import Spinner from "../../components/Spinner/Spinner"
 import { customStyles } from "../../utils/themes"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
-import { getAllUsers } from "../../services/userServices"
-import { GetGames } from "../../services/gameServices"
+import { deleteUser, getAllUsers } from "../../services/userServices"
+import { DeleteGame, GetGames } from "../../services/gameServices"
+import InputCustom from "../../components/InputCustom/InputCustom"
 
 const Admin = () => {
   const navigate = useNavigate()
@@ -28,6 +29,9 @@ const Admin = () => {
   const [isModalGameOpen, setIsModalGameOpen] = useState(false)
   //para el modal de eliminar usuario
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [deleteReason, setDeleteReason] = useState({
+    reason: "",
+  })
 
   const isAdmin = decode && decode.role === "admin"
 
@@ -129,14 +133,83 @@ const Admin = () => {
   const handleDeleteGameClick = (game) => {
     //lo setea a selectedGame
     setSelectedGame(game)
-    // console.log(selectedGame)
+// console.log(selectedGame)
     setIsModalGameOpen(true)
   }
 
-  // const handleConfirmDelete = async (e) => {
-  //   e.preventDefault()
+  const handleChange = ({ target }) => {
+    setDeleteReason((prevState) => ({
+      ...prevState,
+      [target.name]: target.value,
+    }))
+  }
 
-  // }
+  const handleConfirmDelete = async (e) => {
+    e.preventDefault()
+    const id = selectedUser._id
+    setLoading(true)
+    try {
+      const inactiveUser = await deleteUser(id, token)
+      if (inactiveUser.success) {
+        //hay que volver a hacer fetch para traer los datos de nuevo
+        await fetchData()
+        setAlert(true)
+        setStateMessage({
+          message: inactiveUser.message,
+          className: "success",
+        })
+        setTimeout(() => {
+          setAlert(false)
+        }, 1200)
+      }
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      setAlert(true)
+      setStateMessage({
+        message: `${error}`,
+        className: "danger",
+      })
+      setTimeout(() => {
+        setAlert(false)
+      }, 1200)
+    }
+    setIsModalOpen(false)
+  }
+
+  const handleConfirmDeleteGame = async (e) => {
+    e.preventDefault()
+
+    const id = selectedGame._id
+    setLoading(true)
+    try {
+      const deleteGame = await DeleteGame(id, deleteReason, token)
+      if (deleteGame.success) {
+        //hay que volver a hacer fetch para traer los datos de nuevo
+        await fetchData()
+        setAlert(true)
+        setStateMessage({
+          message: deleteGame.message,
+          className: "success",
+        })
+        setTimeout(() => {
+          setAlert(false)
+        }, 1200)
+      }
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      setAlert(true)
+      setStateMessage({
+        message: `${error}`,
+        className: "danger",
+      })
+      setTimeout(() => {
+        setAlert(false)
+      }, 1200)
+    }
+    setIsModalGameOpen(false)
+  }
 
   return (
     <>
@@ -169,7 +242,7 @@ const Admin = () => {
                   </button>
                   <button
                     className="btn btn-outline-warning my-button"
-                    // onClick={handleConfirmDelete}
+                    onClick={handleConfirmDelete}
                   >
                     Confirmar
                   </button>
@@ -189,6 +262,17 @@ const Admin = () => {
                 <p className="text-center">
                   ¿Estás seguro de que deseas eliminar el anuncio?
                 </p>
+                <div className="container mb-3">
+                  <InputCustom
+                    type="text"
+                    name={"reason"}
+                    label="Motivo de la eliminación"
+                    handleChange={handleChange}
+                    placeholder={
+                      "Introduce el motivo para enviar un email al vendedor"
+                    }
+                  />
+                </div>
                 <div className="d-flex justify-content-center ">
                   <button
                     className="btn btn-outline-danger my-button me-3"
@@ -198,7 +282,7 @@ const Admin = () => {
                   </button>
                   <button
                     className="btn btn-outline-warning my-button"
-                    // onClick={handleConfirmDelete}
+                    onClick={handleConfirmDeleteGame}
                   >
                     Confirmar
                   </button>

@@ -4,12 +4,27 @@ import { useDispatch, useSelector } from "react-redux"
 import { clearAuthToken } from "../../redux/authSlice"
 import { clearItemId } from "../../redux/itemSlice"
 import { clearAddressId } from "../../redux/addressSlice"
+import { useEffect, useState } from "react"
 
 const Navbar = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const token = useSelector((state) => state.auth.token)
   const decode = useSelector((state) => state.auth.decode)
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600)
+    }
+
+    window.addEventListener("resize", handleResize)
+
+    // Limpiar el evento al desmontar el componente
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
 
   const handleLogout = () => {
     dispatch(clearAuthToken())
@@ -24,14 +39,14 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="bg-body-secondary nav justify-content-center sticky-top general-nav">
+      <div className={`bg-body-secondary nav sticky-top general-nav ${isMobile ? '' : 'justify-content-center'}`}>
         {decode && decode.role === "admin" && (
           <div className="admin">
             <button
               className="btn btn-outline-warning my-button"
               onClick={handleAdmin}
             >
-              Admin{" "}
+              <span className="button-text">Admin</span>
               <span className="material-symbols-outlined">
                 admin_panel_settings
               </span>
@@ -39,9 +54,9 @@ const Navbar = () => {
           </div>
         )}
 
-        <div className="nav-item">
+        <div className={`nav-item ${isMobile ? "nav-item-mobile" : ""}`}>
           <Link to="/games" replace>
-            <h1 className="h1-home center">re-roll</h1>
+            <h1 className="h1-home">re-roll</h1>
           </Link>
         </div>
 
@@ -51,7 +66,8 @@ const Navbar = () => {
               className="btn btn-outline-warning my-button"
               onClick={handleLogout}
             >
-              Exit <span className="material-symbols-outlined">logout</span>
+              <span className="button-text">Exit</span>
+              <span className="material-symbols-outlined">logout</span>
             </button>
           </div>
         )}

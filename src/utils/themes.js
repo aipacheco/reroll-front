@@ -14,9 +14,9 @@ export const customStyles = {
       justifyContent: "center",
       alignItems: "center",
       textAlign: "center",
-      backgroundColor: "rgba(255,0,255,1)",
-      color: "white", 
-      fontSize: "1.3em"
+      backgroundColor: "orange",
+      color: "black", 
+      fontSize: "1em"
 
     },
   },
@@ -25,8 +25,9 @@ export const customStyles = {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      width: "1em",
       textAlign: "center",
-      fontSize: "1em"
+      fontSize: "0.8em"
     },
   },
 }

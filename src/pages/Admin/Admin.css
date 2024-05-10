@@ -1,0 +1,11 @@
+input[type="checkbox"] {
+  display: none;
+}
+.container-users {
+  height: 2em;
+}
+.data-games {
+  margin-bottom: 4em;
+  padding-bottom: 4em;
+  /* min-height: 100vh; */
+}

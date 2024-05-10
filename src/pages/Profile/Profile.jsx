@@ -61,7 +61,7 @@ const Profile = () => {
       if (canEdit) {
         setEdit(true)
       }
-    } 
+    }
   }, [decode?.username, username])
 
   const handleModal = () => {
@@ -96,7 +96,6 @@ const Profile = () => {
         avatar: avatarFile?.avatar,
         description: editProfile.description || profile.description,
       }
-
       const updated = await UpdateProfile(username, profileToUpdate, token)
       setProfile(updated.data)
       handleModal()
@@ -116,7 +115,7 @@ const Profile = () => {
     Navigate("/address")
   }
   useEffect(() => {
-      fetchProfile()
+    fetchProfile()
   }, [username])
 
   // console.log(profile)
@@ -125,9 +124,18 @@ const Profile = () => {
   return (
     <>
       {loading ? (
-        <Spinner />
+        <div className="centered-container">
+          <Spinner />
+        </div>
+      ) : alert ? (
+        <div className="d-flex justify-content-center mt-3">
+          <AlertCustom
+            className={stateMessage.className}
+            message={stateMessage.message}
+          />
+        </div>
       ) : (
-        <div className="container mt-5 pb-5">
+        <div className="container mt-5 mb-5">
           <CardProfile
             avatar={avatar}
             username={username}
@@ -173,7 +181,7 @@ const Profile = () => {
                 })
               ) : (
                 <AlertCustom
-                  className={"light text-center"}
+                  className={"light text-center mt-3"}
                   message={`${username} no tiene juegos para vender.`}
                 />
               )}

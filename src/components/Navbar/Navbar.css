@@ -19,3 +19,8 @@
 .h1-home:hover {
   transform: scale(1.03);
 }
+.admin{
+  position: absolute;
+ left: 2em; 
+  top: 1em; 
+}

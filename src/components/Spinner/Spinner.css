@@ -1,118 +1,110 @@
-.container-spinner {
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: auto;
-  filter: url("#goo");
-  animation: rotate-move 2s ease-in-out infinite;
+.loader {
+  width: 48px;
+  /* Subpixels get cut off */
+  overflow: visible;
+  transform: rotate(-90deg);
+  transform-origin: center;
+
+  --active: #ffc400;
+  --track: #ffe391;
+
+  --duration: 8s;
+
+  animation: spin 2s linear infinite;
 }
 
-.dot {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: #000;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.dot-3 {
-  background-color: #ff1717;
-  animation: dot-3-move 2s ease infinite, index 6s ease infinite;
-}
-
-.dot-2 {
-  background-color: #0051ff;
-  animation: dot-2-move 2s ease infinite, index 6s -4s ease infinite;
-}
-
-.dot-1 {
-  background-color: #ffc400;
-  animation: dot-1-move 2s ease infinite, index 6s -2s ease infinite;
-}
-
-@keyframes dot-3-move {
-  20% {
-    transform: scale(1);
+@keyframes spin {
+  0% {
+    rotate: 0deg;
   }
-  45% {
-    transform: translateY(-18px) scale(0.45);
+
+  100% {
+    rotate: 360deg;
   }
-  60% {
-    transform: translateY(-90px) scale(0.45);
+}
+
+.active {
+  stroke: var(--active);
+  stroke-linecap: round;
+  stroke-dashoffset: 360;
+  animation: active-animation var(--duration) ease-in-out infinite;
+}
+
+@keyframes active-animation {
+  0% {
+    stroke-dasharray: 0 0 0 360 0 360;
   }
-  80% {
-    transform: translateY(-90px) scale(0.45);
+  12.5% {
+    stroke-dasharray: 0 0 270 90 270 90;
+  }
+  25% {
+    stroke-dasharray: 0 270 0 360 0 360;
+  }
+  37.5% {
+    stroke-dasharray: 0 270 270 90 270 90;
+  }
+  50% {
+    stroke-dasharray: 0 540 0 360 0 360;
+  }
+  50.001% {
+    stroke-dasharray: 0 180 0 360 0 360;
+  }
+  62.5% {
+    stroke-dasharray: 0 180 270 90 270 90;
+  }
+  75% {
+    stroke-dasharray: 0 450 0 360 0 360;
+  }
+  87.5% {
+    stroke-dasharray: 0 450 270 90 270 90;
+  }
+  87.501% {
+    stroke-dasharray: 0 90 270 90 270 90;
   }
   100% {
-    transform: translateY(0px) scale(1);
+    stroke-dasharray: 0 360 1 360 0 360;
   }
 }
 
-@keyframes dot-2-move {
-  20% {
-    transform: scale(1);
-  }
-  45% {
-    transform: translate(-16px, 12px) scale(0.45);
-  }
-  60% {
-    transform: translate(-80px, 60px) scale(0.45);
-  }
-  80% {
-    transform: translate(-80px, 60px) scale(0.45);
-  }
-  100% {
-    transform: translateY(0px) scale(1);
-  }
+.track {
+  stroke: var(--track);
+  stroke-linecap: round;
+  stroke-dashoffset: 360;
+  animation: track-animation var(--duration) ease-in-out infinite;
 }
 
-@keyframes dot-1-move {
-  20% {
-    transform: scale(1);
+@keyframes track-animation {
+  0% {
+    stroke-dasharray: 0 20 320 40 320 40;
   }
-  45% {
-    transform: translate(16px, 12px) scale(0.45);
+  12.5% {
+    stroke-dasharray: 0 290 50 310 50 310;
   }
-  60% {
-    transform: translate(80px, 60px) scale(0.45);
+  25% {
+    stroke-dasharray: 0 290 320 40 320 40;
   }
-  80% {
-    transform: translate(80px, 60px) scale(0.45);
+  37.5% {
+    stroke-dasharray: 0 560 50 310 50 310;
+  }
+  37.501% {
+    stroke-dasharray: 0 200 50 310 50 310;
+  }
+  50% {
+    stroke-dasharray: 0 200 320 40 320 40;
+  }
+  62.5% {
+    stroke-dasharray: 0 470 50 310 50 310;
+  }
+  62.501% {
+    stroke-dasharray: 0 110 50 310 50 310;
+  }
+  75% {
+    stroke-dasharray: 0 110 320 40 320 40;
+  }
+  87.5% {
+    stroke-dasharray: 0 380 50 310 50 310;
   }
   100% {
-    transform: translateY(0px) scale(1);
-  }
-}
-
-@keyframes rotate-move {
-  55% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  80% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-@keyframes index {
-  0%,
-  100% {
-    z-index: 3;
-  }
-  33.3% {
-    z-index: 2;
-  }
-  66.6% {
-    z-index: 1;
+    stroke-dasharray: 0 380 320 40 320 40;
   }
 }

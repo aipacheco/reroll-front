@@ -40,3 +40,22 @@ export const UpdateProfile = async (username, profile, token) => {
     throw error
   }
 }
+
+export const getAllUsers = async (token) => {
+  try {
+    const response = await fetch(URL, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}

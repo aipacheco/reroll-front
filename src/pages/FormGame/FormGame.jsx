@@ -105,7 +105,7 @@ const FormGame = () => {
         })
         setTimeout(() => {
           setAlert(false)
-          navigate("/")
+          navigate("/games")
         }, 1200)
       }
     } catch (error) {
@@ -117,7 +117,7 @@ const FormGame = () => {
       })
       setTimeout(() => {
         setAlert(false)
-        navigate("/")
+        navigate("/games")
       }, 1200)
       console.log(error)
     }

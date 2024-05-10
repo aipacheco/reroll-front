@@ -48,7 +48,7 @@ const ConfirmSale = () => {
       })
       setTimeout(() => {
         setAlert(false)
-        navigate("/")
+        navigate("/games")
       }, 1200)
       console.log("Error fetching address and item:", error)
     }
@@ -67,7 +67,7 @@ const ConfirmSale = () => {
         })
         setTimeout(() => {
           setAlert(false)
-          navigate("/")
+          navigate("/games")
         }, 2000)
       }
       setLoading(false)
@@ -80,7 +80,7 @@ const ConfirmSale = () => {
       })
       // setTimeout(() => {
       //   setAlert(false)
-      //   navigate("/")
+      //   navigate("/games")
       // }, 1200)
       console.log("Error transaccion", error)
     }
@@ -100,7 +100,7 @@ const ConfirmSale = () => {
     })
     setTimeout(() => {
       setAlert(false)
-      navigate("/")
+      navigate("/games")
     }, 1200)
   }
 
@@ -112,7 +112,7 @@ const ConfirmSale = () => {
     if (addressId && itemId) {
       fetchAddressAndItem()
     } else {
-      navigate("/")
+      navigate("/games")
     }
   }, [])
 

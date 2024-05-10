@@ -11,6 +11,7 @@ import FormAddress from "./pages/FormAddress/FormAddress"
 import ConfirmSale from "./pages/ConfirmSale/ConfirmSale"
 import GameEdit from "./pages/GameEdit/GameEdit"
 import AddressEdit from "./pages/AddressEdit/AddressEdit"
+import Landing from "./pages/Landing/Landing"
 
 
 
@@ -23,7 +24,8 @@ export const Layout = () => {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/games" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/user/:username" element={<Profile />} />

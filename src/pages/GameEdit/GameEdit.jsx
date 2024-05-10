@@ -133,7 +133,7 @@ const GameEdit = () => {
         })
         setTimeout(() => {
           setAlert(false)
-          navigate("/")
+          navigate("/games")
         }, 1200)
       }
     } catch (error) {
@@ -145,7 +145,7 @@ const GameEdit = () => {
       })
       setTimeout(() => {
         setAlert(false)
-        navigate("/")
+        navigate("/games")
       }, 1200)
       console.log(error)
     }

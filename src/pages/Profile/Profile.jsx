@@ -61,9 +61,7 @@ const Profile = () => {
       if (canEdit) {
         setEdit(true)
       }
-    } else {
-      Navigate("/login")
-    }
+    } 
   }, [decode?.username, username])
 
   const handleModal = () => {
@@ -118,11 +116,7 @@ const Profile = () => {
     Navigate("/address")
   }
   useEffect(() => {
-    if (token) {
       fetchProfile()
-    } else {
-      Navigate("/login")
-    }
   }, [username])
 
   // console.log(profile)

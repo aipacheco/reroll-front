@@ -22,6 +22,7 @@ const GameDetail = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const decode = useSelector((state) => state.auth.decode)
+
   const { id } = useParams()
 
   const fetchSingleGame = async () => {
@@ -102,11 +103,11 @@ const GameDetail = () => {
             author={authorName}
             handleAuthor={handleAuthor}
             handleShop={
-              decode.username === authorName ? handleEdit : handleShop
+              decode?.username === authorName ? handleEdit : handleShop
             }
-            buttonText={decode.username === authorName ? "Editar" : "Comprar"}
-            symbol={decode.username === authorName ? "edit" : "shopping_cart"}
-          />{" "}
+            buttonText={decode?.username === authorName ? "Editar" : "Comprar"}
+            symbol={decode?.username === authorName ? "edit" : "shopping_cart"}
+          />
         </>
       )}
     </>

@@ -12,7 +12,7 @@ export const LinkButton = ({customClass,  direction, text, icon }) => {
             className={`btn btn-outline-warning my-button ${customClass}`}
           >
             <span className="button-text">{text}</span>
-            <span className="material-symbols-outlined">{icon}</span>
+            <span className="material-symbols-outlined button-mobile">{icon}</span>
           </button>
         </Link>
       </div>

@@ -166,9 +166,9 @@ const GameEdit = () => {
         <>
           <div className="container centered-container mt-3 mb-3">
             <div className="card p-3">
-              <h2 className="center-flex mb-3 mt-3">
+              <h4 className="text-center mb-3 mt-3">
                 Puedes editar tu juego aquí
-              </h2>
+              </h4>
               <div className="container container-preview mb-3">
                 {image1Url ? (
                   <div className="image-container">

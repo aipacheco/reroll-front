@@ -71,7 +71,9 @@ const Home = () => {
     setLoading(true)
     try {
       const games = await GetGames()
-      setGames(games.data)
+      setGames(
+        games.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      )
       const response = await getCategories()
       setCategory(response.data)
     } catch (error) {
@@ -129,7 +131,6 @@ const Home = () => {
                   </button>
                   <ul className="dropdown-menu dropdown-center">
                     {category
-                      .sort((a, b) => a.name.localeCompare(b.name))
                       .map((item, index) => (
                         <li
                           className="dropdown-item"
@@ -187,22 +188,23 @@ const Home = () => {
           </div>
           <div className="row mb-5">
             {filteredGames.length > 0 ? (
-              filteredGames.map((game) => (
-                <div
-                  className="col-12 col-md-6 col-lg-3 col-xl-4 p-3 centered"
-                  key={game._id}
-                >
-                  <CardGame
-                    _id={game._id}
+              filteredGames
+                .map((game) => (
+                  <div
+                    className="col-12 col-md-6 col-lg-3 col-xl-4 p-3 centered"
                     key={game._id}
-                    name={game.name}
-                    image1={game.image1}
-                    description={game.description}
-                    price={game.price}
-                    status={game.status}
-                  />
-                </div>
-              ))
+                  >
+                    <CardGame
+                      _id={game._id}
+                      key={game._id}
+                      name={game.name}
+                      image1={game.image1}
+                      description={game.description}
+                      price={game.price}
+                      status={game.status}
+                    />
+                  </div>
+                ))
             ) : (
               <AlertCustom
                 className={"light text-center"}

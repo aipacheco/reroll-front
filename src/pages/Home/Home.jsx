@@ -163,12 +163,13 @@ const Home = () => {
                 className="form-select"
                 onChange={(event) => handleSort(event.target.value)}
               >
+                <option selected disabled>Ordenar por precio</option>
                 <option value="ascending">Menor</option>
                 <option value="descending">Mayor</option>
               </select>
             </div>
 
-            <div className="col-12 col-md-6 col-lg-3 col-xl-3  card m-1 p-3">
+            <div className="col-12 col-md-4 col-lg-3 col-xl-3  card m-1 p-3">
               <div className="mt-1 text-center ">Número de jugadores</div>
               <ThemeProvider theme={customTheme}>
                 <Slider

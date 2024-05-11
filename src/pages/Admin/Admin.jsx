@@ -343,23 +343,24 @@ const Admin = () => {
                 />
               </div>
             )}
-
-            <h4 className="center-flex mt-5">Categorías</h4>
-            <div className="card-container">
-              {categories &&
-                categories.map((category) => (
-                  <div key={category._id} className="container">
-                    <div className="container p-3">
-                      <div className="card p-1">
-                        {category.name.charAt(0).toUpperCase() +
-                          category.name.slice(1).toLowerCase()}
+            <div className="center-flex mt-5">
+              <h4 className="">Categorías</h4>
+              <div className="card-container w-100 bg-light">
+                {categories &&
+                  categories.map((category) => (
+                    <div key={category._id} className="container">
+                      <div className="container p-3">
+                        <div className="card p-1">
+                          {category.name.charAt(0).toUpperCase() +
+                            category.name.slice(1).toLowerCase()}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+              </div>
             </div>
-            <div className="center-flex">
-              <div className="row w-50 d-flex justify-content-center mt-2">
+            <div className="center-flex bg-light">
+              <div className="row w-50 mt-2 d-flex justify-content-center">
                 <div className="">
                   {" "}
                   <InputCustom
@@ -370,7 +371,7 @@ const Admin = () => {
                     placeholder={"Introduce el nombre de la categoría"}
                   />
                 </div>
-                <div className="">
+                <div className="p-1">
                   {" "}
                   <ButtonCustom
                     text={"Añadir categoría"}

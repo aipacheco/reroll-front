@@ -14,7 +14,7 @@ export const customStyles = {
       justifyContent: "center",
       alignItems: "center",
       textAlign: "center",
-      backgroundColor: "orange",
+      backgroundColor: "#ffc620",
       color: "black", 
       fontSize: "1em"
 

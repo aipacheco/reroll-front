@@ -65,33 +65,32 @@ const GameDetail = () => {
   }
 
   const handleReserve = async () => {
-    console.log(id)
+    // console.log(id)
     setLoading(true)
     try {
       const reserved = await ReserveGame(id, token)
       if (reserved.success) {
+        await fetchSingleGame()
+        setAlert(true)
         setStateMessage({
-          message: "Juego reservado",
+          message: reserved.message,
           className: "success",
         })
-        setAlert(true)
         setTimeout(() => {
           setAlert(false)
-          navigate("/games")
         }, 1200)
       }
+      setLoading(false)
     } catch (error) {
       setLoading(false)
       setAlert(true)
       setStateMessage({
-        message: error.message,
-        className: "alert-danger",
+        message: `${error}`,
+        className: "danger",
       })
       setTimeout(() => {
         setAlert(false)
-        navigate("/games")
       }, 1200)
-      console.log("Error fetching address and item:", error)
     }
   }
 
@@ -100,27 +99,27 @@ const GameDetail = () => {
     try {
       const selled = await SellGame(id, token)
       if (selled.success) {
+        await fetchSingleGame()
+        setAlert(true)
         setStateMessage({
-          message: "Juego reservado",
+          message: selled.message,
           className: "success",
         })
-        setAlert(true)
         setTimeout(() => {
           setAlert(false)
-          navigate("/games")
         }, 1200)
       }
+      setLoading(false)
     } catch (error) {
       setLoading(false)
       setAlert(true)
       setStateMessage({
-        message: error.message,
-        className: "alert-danger",
+        message: `${error}`,
+        className: "danger",
       })
       setTimeout(() => {
         setAlert(false)
       }, 1200)
-      console.log("Error fetching address and item:", error)
     }
   }
 
@@ -138,51 +137,55 @@ const GameDetail = () => {
     playersMin,
     playersMax,
     price,
-    status
+    status,
   } = singleGame
 
   return (
     <>
-      {loading ? (
-        <div className="centered-container">
+      <div className="centered-container">
+        {loading ? (
           <Spinner />
-        </div>
-      ) : alert ? (
-        <div className="d-flex justify-content-center mt-3">
-          <AlertCustom
-            className={stateMessage.className}
-            message={stateMessage.message}
-          />
-        </div>
-      ) : (
-        <>
-          {" "}
-          <SingleGame
-            _id={_id}
-            images={[
-              { label: "Imagen 1", imgPath: image1 },
-              { label: "Imagen 2", imgPath: image2 },
-              { label: "Imagen 3", imgPath: image3 },
-            ]}
-            name={name}
-            description={description}
-            playersMin={playersMin}
-            playersMax={playersMax}
-            price={price}
-            author={authorName}
-            handleAuthor={handleAuthor}
-            handleShop={
-              decode?.username === authorName ? handleEdit : handleShop
-            }
-            buttonText={decode?.username === authorName ? "Editar" : "Comprar"}
-            symbol={decode?.username === authorName ? "edit" : "shopping_cart"}
-            showButtons={decode?.username === authorName}
-            handleReserve={() => handleReserve(_id)}
-            handleSold={() => handleSold(_id)}
-            status={status}
-          />
-        </>
-      )}
+        ) : alert ? (
+          <div className="d-flex justify-content-center mt-3">
+            <AlertCustom
+              className={stateMessage.className}
+              message={stateMessage.message}
+            />
+          </div>
+        ) : (
+          <>
+            {" "}
+            <SingleGame
+              _id={_id}
+              images={[
+                { label: "Imagen 1", imgPath: image1 },
+                { label: "Imagen 2", imgPath: image2 },
+                { label: "Imagen 3", imgPath: image3 },
+              ]}
+              name={name}
+              description={description}
+              playersMin={playersMin}
+              playersMax={playersMax}
+              price={price}
+              author={authorName}
+              handleAuthor={handleAuthor}
+              handleShop={
+                decode?.username === authorName ? handleEdit : handleShop
+              }
+              buttonText={
+                decode?.username === authorName ? "Editar" : "Comprar"
+              }
+              symbol={
+                decode?.username === authorName ? "edit" : "shopping_cart"
+              }
+              showButtons={decode?.username === authorName}
+              handleReserve={() => handleReserve(_id)}
+              handleSold={() => handleSold(_id)}
+              status={status}
+            />
+          </>
+        )}
+      </div>
     </>
   )
 }

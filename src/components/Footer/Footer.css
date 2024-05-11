@@ -13,6 +13,6 @@
   .button-mobile {
     display: block !important;
     width: 100% !important;
-    margin: 0 auto !important; /* Centra el elemento horizontalmente */
+    margin: 0 auto !important;
   }
 }

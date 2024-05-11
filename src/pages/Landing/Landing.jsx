@@ -2,13 +2,12 @@ import { Link } from "react-router-dom"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
 import "./Landing.css"
 import { useSelector } from "react-redux"
-import ButtonCustom from "../../components/ButtonCustom/ButtonCustom"
 import LinkButton from "../../components/LinkButton/LinkButton"
 const Landing = () => {
   const token = useSelector((state) => state.auth.token)
 
   return (
-    <div className="container center-flex mt-5">
+    <div className="centered-container container center-flex p-3">
       <div className="card p-2 text-center">
         <h1>Bienvenid@ a re-roll!</h1>
         <p className="landing-text m-5">

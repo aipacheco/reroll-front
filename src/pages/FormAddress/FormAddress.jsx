@@ -215,7 +215,7 @@ const FormAddress = () => {
   }
 
   return (
-    <>
+    <div className="FormAddress">
       <div className="container address">
         {loading ? (
           <Spinner />
@@ -410,7 +410,7 @@ const FormAddress = () => {
           </>
         )}
       </div>
-    </>
+    </div>
   )
 }
 

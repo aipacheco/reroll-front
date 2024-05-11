@@ -10,11 +10,13 @@
   align-items: center;
 }
 .address {
-  height: 90;
-  min-height: 90vh;
-  margin-bottom: 3.5em;
+  padding-bottom: 5em;
 }
 
-.btn-sm{
+.btn-sm {
   font-size: 0.8em;
+}
+.FormAddress {
+  /* margin-bottom: 1.5em; */
+  height: 90vh;
 }

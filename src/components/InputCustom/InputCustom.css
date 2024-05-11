@@ -1,14 +1,13 @@
-/* input:focus {
-  border-color: rgba(0, 255, 255, 1) !important;
+
+input:focus {
+  border-color:  #ffc107 !important;
+  /* outline: none !important; */
+  box-shadow: -2px 2px 2px rgb(255, 161, 53) !important;
+}
+input {
+  border-color:  #ffc107 !important;
   box-shadow: none !important;
-  outline: none !important;
-  box-shadow: -2px 2px 1px rgba(0, 255, 255, 1),
-    2px -2px 1px rgba(255, 0, 255, 1) !important;
-} */
-/* input {
-  border-color: #ff00ff !important;
-  box-shadow: -2px 2px 1px rgba(0,255,255,1), 2px -2px 1px rgba(255,0,255,1); 
-} */
-/* .input-container {
+}
+.input-container {
   min-height: 6em;
-} */
+}

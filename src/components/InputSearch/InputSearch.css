@@ -1,0 +1,25 @@
+input:focus {
+  border-color: #ffc107 !important;
+  /* outline: none !important; */
+  box-shadow: -2px 2px 2px rgb(255, 161, 53) !important;
+  transform: scale(1.01);
+}
+input {
+  border-color: #ffc107 !important;
+  box-shadow: none !important;
+}
+.input-search {
+  min-height: 6em;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: darkgray;
+}

@@ -1,9 +1,11 @@
 export const validator = (value, type) => {
   const regexString = /^[a-zA-Z0-9]+$/
   const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
+  const regexName = /^[a-zA-Z0-9 áéíóúÁÉÍÓÚ]+$/
 
   switch (type) {
-    case "username": {
+    case "username":
+{
       if (!regexString.test(value)) {
         return `El nombre tiene que estar formado por caracteres correctos (sólo números y letras).`
       }
@@ -33,10 +35,27 @@ export const validator = (value, type) => {
       }
       return ""
     }
-    case "content" :{
-      //si es mayor de 240 letras
-      if (value.length > 240) {
-        return `El contenido tiene que ser máximo 240 caracteres.`
+    case "name": {
+      if (!regexName.test(value)) {
+        return `El nombre tiene que estar formado por caracteres correctos (sólo números y letras).`
+      }
+      if (value.length < 3) {
+        return `El nombre tiene que ser mínimo de 3 letras.`
+      }
+      if (value.length > 50) {
+        return `El nombre tiene que ser máximo 50 letras.`
+      }
+      return ""
+    }
+    case "lastName": {
+      if (!regexName.test(value)) {
+        return `El nombre tiene que estar formado por caracteres correctos (sólo números y letras).`
+      }
+      if (value.length < 3) {
+        return `El nombre tiene que ser mínimo de 3 letras.`
+      }
+      if (value.length > 50) {
+        return `El nombre tiene que ser máximo 50 letras.`
       }
       return ""
     }
@@ -44,6 +63,63 @@ export const validator = (value, type) => {
       //si es mayor de 180 letras
       if (value.length > 180) {
         return `la descripción tiene que ser máximo 180 caracteres.`
+      }
+      return ""
+    }
+    case "price": {
+      if (value < 0) {
+        return "El precio no puede ser negativo."
+      }
+      return ""
+    }
+    case "cp": {
+      if (value < 0) {
+        return "El código postal deben ser números positivos."
+      }
+      if (value.toString().length !== 5) {
+        return "El código postal debe tener 5 dígitos."
+      }
+      return ""
+    }
+    case "playersMin": {
+      if (value < 1) {
+        return "El número mínimo de jugadores no puede ser inferior a 1."
+      }
+      return ""
+    }
+    case "playersMax": {
+      if (value < 1) {
+        return "El número máximo de jugadores no puede ser inferior a 1."
+      }
+      return ""
+    }
+    case "city": {
+      if (!regexName.test(value)) {
+        return `La ciudad tiene que estar formada por caracteres correctos (sólo números y letras).`
+      }
+      if (value.length < 3) {
+        return `La ciudad tiene que ser mínimo de 3 letras.`
+      }
+      if (value.length > 50) {
+        return `La ciudadtiene que ser máximo 50 letras.`
+      }
+      return ""
+    }
+    case "streetAddress": {
+      if (value.length < 3) {
+        return `La dirección tiene que ser mínimo de 3 letras.`
+      }
+      if (value.length > 50) {
+        return `La dirección tiene que ser máximo 50 letras.`
+      }
+      return ""
+    }
+    case "province": {
+      if (value.length < 3) {
+        return `La dirección tiene que ser mínimo de 3 letras.`
+      }
+      if (value.length > 50) {
+        return `La dirección tiene que ser máximo 50 letras.`
       }
       return ""
     }
@@ -61,6 +137,7 @@ export const CheckForm = (state) => {
   return true
 }
 
+//funcion para comprobar si un state tipo obj está vacio
 export const checkAllEmpty = (obj) => {
   return Object.values(obj).every((value) => value === "")
 }

@@ -1,0 +1,13 @@
+.col-lg-3 {
+  min-width: 27em;
+}
+.hidden-radio {
+  display: none;
+}
+
+.dropdown-toggle {
+  width: 15em;
+}
+.MuiSlider-valueLabel {
+  background-color: rgb(255, 166, 0) !important;
+}

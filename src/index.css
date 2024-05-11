@@ -1,34 +1,59 @@
 #root {
-  font-family: "EB Garamond", serif;
-  font-style: italic;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: small;
   margin: 0;
   padding: 0;
-  height: 100%;
+  min-height: 100vh;
+  background-color: rgba(236, 236, 236, 0.683);
 }
-div {
+/* div {
   border: 0.5px solid red;
-}
+} */
 .center-flex {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
-/* .centered-container {
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.centered-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-}  */
+  margin-bottom: 3.5em;
+}
 a {
   text-decoration: none !important;
   cursor: pointer !important;
-  /* color: #2e2e2e !important; */
+  color: #ffc107 !important;
+  font-style: italic;
 }
-.h1-home{
-font-weight: extra-bold;
- font-size: 15em;
+.card {
+  box-shadow: 0px 5px 10px 1px rgba(254, 189, 92, 0.279);
+}
+h1 {
+  color: #ffc107;
+  text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.08);
+  font-style: italic;
+}
+h2,
+h3,
+h4,
+h5 {
+  text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.08);
+  font-style: italic;
+}
+.center-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
 }

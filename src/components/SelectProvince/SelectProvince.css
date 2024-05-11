@@ -1,0 +1,12 @@
+.form-select:focus {
+    border-color:#ffc107 !important;
+    /* outline: none !important; */
+    box-shadow: -2px 2px 2px rgb(255, 161, 53) !important;
+  }
+  .form-select {
+    border-color: #ffc107 !important;
+    box-shadow: none !important;
+  }
+  .input-container {
+    min-height: 6em;
+  }

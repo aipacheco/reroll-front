@@ -23,7 +23,7 @@ const EditUserModal = ({
 }) => {
   return (
     <Modal
-      className="center-modal modal-form"
+      className="center-modal modal-form mt-5"
       isOpen={isModalOpen}
       toggle={handleModal}
     >

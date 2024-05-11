@@ -7,9 +7,11 @@ import DataTable from "react-data-table-component"
 import Spinner from "../../components/Spinner/Spinner"
 import { customStyles } from "../../utils/themes"
 import AlertCustom from "../../components/AlertCustom/AlertCustom"
+import ButtonCustom from "../../components/ButtonCustom/ButtonCustom"
 import { deleteUser, getAllUsers } from "../../services/userServices"
 import { DeleteGame, GetGames } from "../../services/gameServices"
 import InputCustom from "../../components/InputCustom/InputCustom"
+import { createCategory, getCategories } from "../../services/categoryServices"
 
 const Admin = () => {
   const navigate = useNavigate()
@@ -23,12 +25,17 @@ const Admin = () => {
   const [alert, setAlert] = useState(false)
   const [users, setUsers] = useState([])
   const [games, setGames] = useState([])
+  const [categories, setCategories] = useState([])
+  const [category, setCategory] = useState({
+    name: "",
+  })
   const [selectedUser, setSelectedUser] = useState(null)
   const [selectedGame, setSelectedGame] = useState(null)
   //para el modal de eliminar juego
   const [isModalGameOpen, setIsModalGameOpen] = useState(false)
   //para el modal de eliminar usuario
   const [isModalOpen, setIsModalOpen] = useState(false)
+  //para el modal de eliminar categoría
   const [deleteReason, setDeleteReason] = useState({
     reason: "",
   })
@@ -40,8 +47,10 @@ const Admin = () => {
     try {
       const users = await getAllUsers(token)
       const games = await GetGames()
+      const categories = await getCategories()
       setUsers(users.data)
       setGames(games.data)
+      setCategories(categories.data)
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -124,6 +133,7 @@ const Admin = () => {
       ),
     },
   ]
+
   const handleDeleteClick = (user) => {
     //lo setea a selectedUser
     setSelectedUser(user)
@@ -133,12 +143,19 @@ const Admin = () => {
   const handleDeleteGameClick = (game) => {
     //lo setea a selectedGame
     setSelectedGame(game)
-// console.log(selectedGame)
+    // console.log(selectedGame)
     setIsModalGameOpen(true)
   }
 
   const handleChange = ({ target }) => {
     setDeleteReason((prevState) => ({
+      ...prevState,
+      [target.name]: target.value,
+    }))
+  }
+
+  const handleCategoryChange = ({ target }) => {
+    setCategory((prevState) => ({
       ...prevState,
       [target.name]: target.value,
     }))
@@ -210,9 +227,39 @@ const Admin = () => {
     setIsModalGameOpen(false)
   }
 
+  const handleCategoryPost = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+      const newCategory = await createCategory(category, token)
+      if (newCategory.success) {
+        //hay que volver a hacer fetch para traer los datos de nuevo
+        await fetchData()
+        setAlert(true)
+        setStateMessage({
+          message: newCategory.message,
+          className: "success",
+        })
+        setTimeout(() => {
+          setAlert(false)
+        }, 1200)
+      }
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      setAlert(true)
+      setStateMessage({
+        message: `${error}`,
+        className: "danger",
+      })
+      setTimeout(() => {
+        setAlert(false)
+      }, 1200)
+    }
+  }
+
   return (
     <>
-      <h4 className="center-flex mt-5">Panel de administración de usuarios</h4>
       <div className="container mt-2">
         {loading ? (
           <div className="centered-container">
@@ -248,7 +295,6 @@ const Admin = () => {
                 </div>
               </div>
             </Modal>
-
             {/* modal de eliminar juego */}
             <Modal
               className="center-modal"
@@ -297,6 +343,47 @@ const Admin = () => {
                 />
               </div>
             )}
+
+            <h4 className="center-flex mt-5">Categorías</h4>
+            <div className="card-container">
+              {categories &&
+                categories.map((category) => (
+                  <div key={category._id} className="container">
+                    <div className="container p-3">
+                      <div className="card p-1">
+                        {category.name.charAt(0).toUpperCase() +
+                          category.name.slice(1).toLowerCase()}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+            <div className="center-flex">
+              <div className="row w-50 d-flex justify-content-center mt-2">
+                <div className="">
+                  {" "}
+                  <InputCustom
+                    type="text"
+                    name={"name"}
+                    label="Nueva categoría"
+                    handleChange={handleCategoryChange}
+                    placeholder={"Introduce el nombre de la categoría"}
+                  />
+                </div>
+                <div className="">
+                  {" "}
+                  <ButtonCustom
+                    text={"Añadir categoría"}
+                    isFormComplete={true}
+                    handleSubmit={handleCategoryPost}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <h4 className="center-flex mt-3">
+              Panel de administración de usuarios
+            </h4>
             <DataTable
               columns={columns}
               data={users}
@@ -306,8 +393,7 @@ const Admin = () => {
               pagination
               paginationPerPage={10}
             />
-
-            <h4 className="center-flex mt-5">
+            <h4 className="center-flex mt-3">
               Panel de administración de anuncios
             </h4>
             <div className="container data-games">

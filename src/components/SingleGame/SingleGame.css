@@ -2,26 +2,31 @@
   display: block;
   justify-content: center;
   align-items: center;
-  max-width: 35em;
   margin: auto;
   overflow: hidden;
-  margin-top: 3em;
+}
+.container-single {
+  max-width: 33em;
+  min-height: 95vh;
+  margin-bottom: 3em;
+  margin-top: 1em;
+}
+.carousel-item {
+  overflow: hidden;
+}
+.carousel-indicators {
+  position: absolute;
+  right: 0;
+  bottom: -1em;
 }
 
-.carousel-item {
-  height: 30em;
-  max-width: 32.1em;
-  padding: 1em;
-  overflow: hidden;
-}
 .carousel-img {
-  display: block;
-  margin: auto;
-  object-fit: cover;
+  width: 100%;
+  height: auto;
+  max-height: 20em;
+  object-fit: scale-down;
 }
-.carousel-inner {
-  width: 35em !important;
-}
+
 button.active {
   background-color: orange !important;
   color: white;
@@ -35,7 +40,7 @@ button.active {
 .my-button .material-symbols-outlined {
   margin-left: 0.3em;
 }
-.status-comprado{
+.status-comprado {
   position: absolute;
   font-size: 0.9em;
   top: 10px;
@@ -45,7 +50,7 @@ button.active {
   padding: 0.5em;
   border-radius: 0.5em;
 }
-.status-reservado{
+.status-reservado {
   position: absolute;
   font-size: 0.9em;
   top: 10px;
@@ -55,7 +60,7 @@ button.active {
   padding: 0.5em;
   border-radius: 0.5em;
 }
-.status-disponible{
+.status-disponible {
   position: absolute;
   font-size: 0.9em;
   top: 10px;
@@ -67,23 +72,12 @@ button.active {
 }
 
 @media (max-width: 600px) {
-  .container-game {
-    display: block;
-    justify-content: center;
-    align-items: center;
-    max-width: 22em;
-    margin: 1em;
-    overflow: hidden;
+  .container-single {
+    max-width: 25em;
+    min-height: 95vh;
+    margin-bottom: 5em;
+    margin-top: 1em;
   }
-  .carousel-item {
-    height: 21em;
-    max-width: 21em;
-  }
-
-  .carousel-inner {
-    width: 22em !important;
-  }
-
   .status-comprado,
   .status-reservado,
   .status-disponible {
@@ -97,7 +91,7 @@ button.active {
     justify-content: center;
     font-size: 0.9em;
   }
-.material-button{
-  font-size: 1em;
-}
+  .material-button {
+    font-size: 1em;
+  }
 }

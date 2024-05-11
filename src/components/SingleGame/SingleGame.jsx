@@ -36,7 +36,7 @@ const SingleGame = ({
   }
 
   return (
-    <div className="p-2 mb-5">
+    <div className="container-single">
       <div className="container-game">
         <div className="card p-1 ">
           <Carousel activeIndex={activeStep} onSelect={handleSelect}>
@@ -44,7 +44,7 @@ const SingleGame = ({
               <Carousel.Item key={step.label}>
                 <div style={{ position: "relative" }}>
                   <img
-                    className="d-block w-100 carousel-img"
+                    className="d-block carousel-img"
                     src={step.imgPath}
                     alt={step.label}
                   />

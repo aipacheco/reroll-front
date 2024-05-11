@@ -2,10 +2,10 @@
   display: block;
   justify-content: center;
   align-items: center;
-  height: 60em;
+  /* height: 60em; */
   width: 35em;
   margin: auto;
-  margin-top: 3em;
+  /* margin-top: 3em; */
   overflow: hidden;
 }
 
@@ -37,4 +37,33 @@ button.active {
 .my-button .material-symbols-outlined {
   margin-left: 0.3em;
 }
-
+.status-comprado{
+  position: absolute;
+  font-size: 0.9em;
+  top: 10px;
+  right: 10px;
+  color: white;
+  background-color: red;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+.status-reservado{
+  position: absolute;
+  font-size: 0.9em;
+  top: 10px;
+  right: 10px;
+  color: white;
+  background-color: rgb(0, 160, 188);
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+.status-disponible{
+  position: absolute;
+  font-size: 0.9em;
+  top: 10px;
+  right: 10px;
+  color: white;
+  background-color: green;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}

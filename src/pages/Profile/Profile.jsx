@@ -175,6 +175,7 @@ const Profile = () => {
                         image1={game.image1}
                         description={game.description}
                         price={game.price}
+                        status={game.status}
                       />
                     </div>
                   )

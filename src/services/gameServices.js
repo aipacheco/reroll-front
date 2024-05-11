@@ -92,7 +92,7 @@ export const UpdateGame = async (id, data, token) => {
 }
 
 export const DeleteGame = async (id, reason, token) => {
-  console.log(reason)
+  // console.log(reason)
   try {
     const response = await fetch(`${URL}/${id}`, {
       method: "DELETE",
@@ -101,6 +101,42 @@ export const DeleteGame = async (id, reason, token) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(reason),
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+export const ReserveGame = async (id, token) => {
+  try {
+    const response = await fetch(`${URL}/reserve/${id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+export const SellGame = async (id, token) => {
+  try {
+    const response = await fetch(`${URL}/sell/${id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     })
     const data = await response.json()
     if (!data.success) {

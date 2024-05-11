@@ -1,6 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState } from "react"
-import { getSingleGame } from "../../services/gameServices"
+import {
+  ReserveGame,
+  SellGame,
+  getSingleGame,
+} from "../../services/gameServices"
 import { useParams } from "react-router-dom"
 import { useEffect } from "react"
 import SingleGame from "../../components/SingleGame/SingleGame"
@@ -22,6 +26,7 @@ const GameDetail = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const decode = useSelector((state) => state.auth.decode)
+  const token = useSelector((state) => state.auth.token)
 
   const { id } = useParams()
 
@@ -58,6 +63,67 @@ const GameDetail = () => {
   const handleAuthor = () => {
     navigate(`/user/${authorName}`)
   }
+
+  const handleReserve = async () => {
+    console.log(id)
+    setLoading(true)
+    try {
+      const reserved = await ReserveGame(id, token)
+      if (reserved.success) {
+        setStateMessage({
+          message: "Juego reservado",
+          className: "success",
+        })
+        setAlert(true)
+        setTimeout(() => {
+          setAlert(false)
+          navigate("/games")
+        }, 1200)
+      }
+    } catch (error) {
+      setLoading(false)
+      setAlert(true)
+      setStateMessage({
+        message: error.message,
+        className: "alert-danger",
+      })
+      setTimeout(() => {
+        setAlert(false)
+        navigate("/games")
+      }, 1200)
+      console.log("Error fetching address and item:", error)
+    }
+  }
+
+  const handleSold = async () => {
+    setLoading(true)
+    try {
+      const selled = await SellGame(id, token)
+      if (selled.success) {
+        setStateMessage({
+          message: "Juego reservado",
+          className: "success",
+        })
+        setAlert(true)
+        setTimeout(() => {
+          setAlert(false)
+          navigate("/games")
+        }, 1200)
+      }
+    } catch (error) {
+      setLoading(false)
+      setAlert(true)
+      setStateMessage({
+        message: error.message,
+        className: "alert-danger",
+      })
+      setTimeout(() => {
+        setAlert(false)
+      }, 1200)
+      console.log("Error fetching address and item:", error)
+    }
+  }
+
   useEffect(() => {
     fetchSingleGame()
   }, [])
@@ -72,12 +138,15 @@ const GameDetail = () => {
     playersMin,
     playersMax,
     price,
+    status
   } = singleGame
 
   return (
     <>
       {loading ? (
-        <Spinner />
+        <div className="centered-container">
+          <Spinner />
+        </div>
       ) : alert ? (
         <div className="d-flex justify-content-center mt-3">
           <AlertCustom
@@ -107,6 +176,10 @@ const GameDetail = () => {
             }
             buttonText={decode?.username === authorName ? "Editar" : "Comprar"}
             symbol={decode?.username === authorName ? "edit" : "shopping_cart"}
+            showButtons={decode?.username === authorName}
+            handleReserve={() => handleReserve(_id)}
+            handleSold={() => handleSold(_id)}
+            status={status}
           />
         </>
       )}

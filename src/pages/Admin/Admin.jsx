@@ -179,7 +179,6 @@ const Admin = () => {
 
   const handleConfirmDeleteGame = async (e) => {
     e.preventDefault()
-
     const id = selectedGame._id
     setLoading(true)
     try {

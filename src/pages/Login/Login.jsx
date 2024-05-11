@@ -111,39 +111,47 @@ const Login = () => {
           <div className="card card-register container">
             <div className="col-12 mb-5 mt-3">
               <h2 className="text-center"> Login </h2>
-              <div className="input-container">
-                <InputCustom
-                  label={"Email"}
-                  type={"email"}
-                  name={"email"}
-                  handleChange={handleChange}
-                  placeholder={"Introduce tu email"}
-                />
-                <div className="error">{userError.emailError}</div>{" "}
-              </div>
-              <div className="input-container">
-                <InputCustom
-                  label={"Contraseña"}
-                  type={"password"}
-                  name={"password"}
-                  handleChange={handleChange}
-                  placeholder={"Introduce tu contraseña"}
-                />
-                <div className="error">{userError.passwordError}</div>{" "}
-              </div>
-              {alert && (
-                <div className="center-flex mt-3">
-                  <AlertCustom
-                    className={stateMessage.className}
-                    message={stateMessage.message}
+              <form onSubmit={handleSubmit}>
+                <div className="input-container">
+                  <InputCustom
+                    label={"Email"}
+                    type={"email"}
+                    name={"email"}
+                    handleChange={handleChange}
+                    placeholder={"Introduce tu email"}
                   />
+                  <div className="error">{userError.emailError}</div>{" "}
                 </div>
-              )}
+                <div className="input-container">
+                  <InputCustom
+                    label={"Contraseña"}
+                    type={"password"}
+                    name={"password"}
+                    handleChange={handleChange}
+                    placeholder={"Introduce tu contraseña"}
+                  />
+                  <div className="error">{userError.passwordError}</div>{" "}
+                </div>
+                {alert && (
+                  <div className="center-flex mt-3">
+                    <AlertCustom
+                      className={stateMessage.className}
+                      message={stateMessage.message}
+                    />
+                  </div>
+                )}
+                <input
+                  className="hidden"
+                  type="submit"
+                  value="Iniciar sesión"
+                />
+              </form>
               <ButtonCustom
                 text={"Login"}
                 handleSubmit={handleSubmit}
                 isFormComplete={isFormComplete}
               />
+
               <div className="login-question mt-2">
                 <AlertCustom
                   className={"light text-center"}

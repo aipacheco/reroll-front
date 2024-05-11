@@ -100,37 +100,39 @@ const Register = () => {
           <div className="card card-register container">
             <div className="col-12 mb-5 mt-3">
               <h2 className="text-center"> Registro </h2>
-
-              <div className="input-container">
-                <InputCustom
-                  label={"Nombre de usuario"}
-                  type={"text"}
-                  name={"username"}
-                  handleChange={handleChange}
-                  placeholder={"Introduce tu nombre de usuario"}
-                />
-                <div className="error">{userError.usernameError}</div>
-              </div>
-              <div className="input-container">
-                <InputCustom
-                  label={"Email"}
-                  type={"email"}
-                  name={"email"}
-                  handleChange={handleChange}
-                  placeholder={"Introduce tu email"}
-                />
-                <div className="error">{userError.emailError}</div>
-              </div>
-              <div className="input-container">
-                <InputCustom
-                  label={"Contraseña"}
-                  type={"password"}
-                  name={"password"}
-                  handleChange={handleChange}
-                  placeholder={"Introduce tu contraseña"}
-                />
-                <div className="error">{userError.passwordError}</div>
-              </div>
+              <form onSubmit={handleSubmit}>
+                <div className="input-container">
+                  <InputCustom
+                    label={"Nombre de usuario"}
+                    type={"text"}
+                    name={"username"}
+                    handleChange={handleChange}
+                    placeholder={"Introduce tu nombre de usuario"}
+                  />
+                  <div className="error">{userError.usernameError}</div>
+                </div>
+                <div className="input-container">
+                  <InputCustom
+                    label={"Email"}
+                    type={"email"}
+                    name={"email"}
+                    handleChange={handleChange}
+                    placeholder={"Introduce tu email"}
+                  />
+                  <div className="error">{userError.emailError}</div>
+                </div>
+                <div className="input-container">
+                  <InputCustom
+                    label={"Contraseña"}
+                    type={"password"}
+                    name={"password"}
+                    handleChange={handleChange}
+                    placeholder={"Introduce tu contraseña"}
+                  />
+                  <div className="error">{userError.passwordError}</div>
+                  <input className="hidden" type="submit" value="Registrarse" />
+                </div>
+              </form>
               {alert && (
                 <div className="center-flex mt-3">
                   <AlertCustom

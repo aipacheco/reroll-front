@@ -7,7 +7,6 @@ import Button from "react-bootstrap/Button"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-
 const SingleGame = ({
   images,
   name,
@@ -20,6 +19,10 @@ const SingleGame = ({
   handleShop,
   buttonText,
   symbol,
+  showButtons,
+  handleReserve,
+  handleSold,
+  status,
 }) => {
   const [activeStep, setActiveStep] = useState(0)
   const token = useSelector((state) => state.auth.token)
@@ -33,19 +36,64 @@ const SingleGame = ({
   }
 
   return (
-    <div className="container-game mb-5">
+    <div className="container-game mb-5 mt-4">
       <div className="card p-3 ">
         <Carousel activeIndex={activeStep} onSelect={handleSelect}>
           {images.map((step) => (
             <Carousel.Item key={step.label}>
-              <img
-                className="d-block w-100 carousel-img"
-                src={step.imgPath}
-                alt={step.label}
-              />
+              <div style={{ position: "relative" }}>
+                <img
+                  className="d-block w-100 carousel-img"
+                  src={step.imgPath}
+                  alt={step.label}
+                />
+                <span
+                  className={
+                    status === "Vendido"
+                      ? "status-comprado"
+                      : status === "Reservado"
+                      ? "status-reservado"
+                      : "status-disponible"
+                  }
+                >
+                  {status}
+                </span>
+              </div>
             </Carousel.Item>
           ))}
         </Carousel>
+        {showButtons && (
+          <Card.Body>
+            <div className="container d-flex justify-content-around">
+              <Button
+                variant="outline-info"
+                onClick={handleReserve}
+                className="my-button"
+              >
+                {status !== "Reservado" ? "Reservado" : "Disponible"}
+
+                <span className="material-symbols-outlined">
+                  {status !== "Reservado" ? "priority_high" : ""}
+                </span>
+              </Button>
+              <Button
+                variant="outline-danger"
+                onClick={handleSold}
+                className="my-button"
+              >
+                {status !== "Vendido" ? "Vendido" : "Disponible"}
+
+                <span className="material-symbols-outlined">
+                  {" "}
+                  {status === "Vendido" || status === "Reservado"
+                    ? ""
+                    : "download_done"}
+                </span>
+              </Button>
+            </div>
+          </Card.Body>
+        )}
+
         <Card.Body>
           <Card.Subtitle onClick={handleAuthor} style={{ cursor: "pointer" }}>
             <a>{author}</a>
@@ -68,7 +116,11 @@ const SingleGame = ({
             <Card.Subtitle className="text-dark">Precio: </Card.Subtitle>
             {price}€
           </Card.Body>
-          {token ? (
+          {status === "Vendido" ? (
+            <Button variant="danger" className="my-button" disabled>
+              Este juego ha sido vendido
+            </Button>
+          ) : token ? (
             <Button
               variant="warning"
               onClick={handleShop}

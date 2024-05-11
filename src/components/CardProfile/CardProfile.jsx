@@ -11,8 +11,8 @@ const CardProfile = ({ avatar, username, description, edit, handleModal, handleA
         <div className="col-md-8">
           <div className="card-body p-0 mt-2 mb-2">
             <div className="center-column">
-              <h4 className="card-title">{username}</h4>
-              <p className="card-text">{description}</p>
+              <h4 className="card-title p-2">{username}</h4>
+              <p className="card-text p-3">{description}</p>
             </div>
             {edit && (
               <div className="d-flex justify-content-end p-1 mt-3">

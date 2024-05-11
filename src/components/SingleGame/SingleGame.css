@@ -2,11 +2,10 @@
   display: block;
   justify-content: center;
   align-items: center;
-  height: 60em;
-  width: 35em;
+  max-width: 35em;
   margin: auto;
-  margin-top: 3em;
   overflow: hidden;
+  margin-top: 3em;
 }
 
 .carousel-item {
@@ -15,7 +14,6 @@
   padding: 1em;
   overflow: hidden;
 }
-
 .carousel-img {
   display: block;
   margin: auto;
@@ -37,4 +35,69 @@ button.active {
 .my-button .material-symbols-outlined {
   margin-left: 0.3em;
 }
+.status-comprado{
+  position: absolute;
+  font-size: 0.9em;
+  top: 10px;
+  right: 10px;
+  color: white;
+  background-color: red;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+.status-reservado{
+  position: absolute;
+  font-size: 0.9em;
+  top: 10px;
+  right: 10px;
+  color: white;
+  background-color: rgb(0, 160, 188);
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+.status-disponible{
+  position: absolute;
+  font-size: 0.9em;
+  top: 10px;
+  right: 10px;
+  color: white;
+  background-color: green;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
 
+@media (max-width: 600px) {
+  .container-game {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    max-width: 22em;
+    margin: 1em;
+    overflow: hidden;
+  }
+  .carousel-item {
+    height: 20em;
+    max-width: 20em;
+  }
+
+  .carousel-inner {
+    width: 20em !important;
+  }
+
+  .status-comprado,
+  .status-reservado,
+  .status-disponible {
+    font-size: 0.7em;
+    top: 5px;
+    right: 5px;
+  }
+  .my-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+  }
+.material-button{
+  font-size: 1em;
+}
+}

@@ -105,7 +105,7 @@ const FormGame = () => {
         })
         setTimeout(() => {
           setAlert(false)
-          navigate("/")
+          navigate("/games")
         }, 1200)
       }
     } catch (error) {
@@ -117,7 +117,7 @@ const FormGame = () => {
       })
       setTimeout(() => {
         setAlert(false)
-        navigate("/")
+        navigate("/games")
       }, 1200)
       console.log(error)
     }
@@ -125,7 +125,7 @@ const FormGame = () => {
   }
 
   return (
-    <>
+    <div className="centered-container">
       {loading ? (
         <Spinner />
       ) : alert ? (
@@ -137,9 +137,9 @@ const FormGame = () => {
         </div>
       ) : (
         <>
-          <div className="container centered-container mt-3 mb-3">
+          <div className="container centered-container mt-3 mb-5">
             <div className="card p-3">
-              <h2 className="center-flex mb-3 mt-3">
+              <h2 className="center-flex mb-3 mt-3 text-center">
                 Introduce los datos del juego que quieres vender
               </h2>
               <div className="container container-preview mb-3">
@@ -264,7 +264,7 @@ const FormGame = () => {
           </div>
         </>
       )}
-    </>
+    </div>
   )
 }
 

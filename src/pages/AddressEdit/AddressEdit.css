@@ -1,0 +1,12 @@
+.address-container {
+    margin-top: 5em;
+    margin-bottom: 5em;
+  }
+  
+  @media (max-width: 600px) {
+    .address-container {
+      margin-top: 1.5em;
+      margin-bottom: 5em;
+    }
+  }
+  

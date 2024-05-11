@@ -3,7 +3,7 @@ import "./Select.css"
 import { useEffect, useState } from "react"
 import { getCategories } from "../../services/categoryServices"
 
-const Select = ({ onCategoryChange }) => {
+const Select = ({ onCategoryChange, gameCategory, hidden }) => {
   const [category, setCategory] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("")
 
@@ -20,6 +20,12 @@ const Select = ({ onCategoryChange }) => {
     allCategories()
   }, [])
 
+  useEffect(() => {
+    if (gameCategory) {
+      setSelectedCategory(gameCategory)
+    }
+  }, [gameCategory])
+
   const handleChange = ({ target }) => {
     setSelectedCategory(target.value)
     onCategoryChange(target.value)
@@ -27,21 +33,24 @@ const Select = ({ onCategoryChange }) => {
 
   return (
     <div className="input-group mb-3 mt-3">
-      <label className="input-group-text">Categoría</label>
+      <label className={`input-group-text ${hidden}`} >Categoría</label>
       <select
         className="form-select"
         value={selectedCategory}
         onChange={handleChange}
       >
-        <option disabled>Elije una opción</option>
-        {category
-          .sort((a, b) => a.name.localeCompare(b.name))
-          .map((item, index) => (
-            <option key={index} value={item._id}>
-              {item.name.charAt(0).toUpperCase() +
-                item.name.slice(1).toLowerCase()}
-            </option>
-          ))}
+        <option disabled selected value="">
+          Elije una opción
+        </option>
+        {Array.isArray(category) &&
+          category
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((item, index) => (
+              <option key={index} value={item._id}>
+                {item.name.charAt(0).toUpperCase() +
+                  item.name.slice(1).toLowerCase()}
+              </option>
+            ))}
       </select>
     </div>
   )

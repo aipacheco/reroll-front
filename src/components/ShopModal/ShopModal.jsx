@@ -15,7 +15,7 @@ const ShopModal = ({
   return (
     <>
       <Modal
-        className="center-modal modal-form"
+        className="center-modal modal-form mt-3"
         isOpen={isModalOpen}
         toggle={handleModal}
       >
@@ -25,7 +25,7 @@ const ShopModal = ({
 
         <>
           <div className="container">
-            <div className="p-3">{text}</div>
+            <div className="p-3 text-center">{text}</div>
             <div className="d-flex justify-content-center mb-3">
               {cancel && (
                 <button className="btn btn-danger m-1" onClick={handleCancel}>

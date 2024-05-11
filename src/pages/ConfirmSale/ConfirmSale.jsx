@@ -48,7 +48,7 @@ const ConfirmSale = () => {
       })
       setTimeout(() => {
         setAlert(false)
-        navigate("/")
+        navigate("/games")
       }, 1200)
       console.log("Error fetching address and item:", error)
     }
@@ -67,7 +67,7 @@ const ConfirmSale = () => {
         })
         setTimeout(() => {
           setAlert(false)
-          navigate("/")
+          navigate("/games")
         }, 2000)
       }
       setLoading(false)
@@ -78,10 +78,10 @@ const ConfirmSale = () => {
         message: error.message,
         className: "danger",
       })
-      // setTimeout(() => {
-      //   setAlert(false)
-      //   navigate("/")
-      // }, 1200)
+      setTimeout(() => {
+        setAlert(false)
+        navigate("/games")
+      }, 1200)
       console.log("Error transaccion", error)
     }
   }
@@ -100,7 +100,7 @@ const ConfirmSale = () => {
     })
     setTimeout(() => {
       setAlert(false)
-      navigate("/")
+      navigate("/games")
     }, 1200)
   }
 
@@ -112,7 +112,7 @@ const ConfirmSale = () => {
     if (addressId && itemId) {
       fetchAddressAndItem()
     } else {
-      navigate("/")
+      navigate("/games")
     }
   }, [])
 
@@ -121,16 +121,7 @@ const ConfirmSale = () => {
 
   return (
     <>
-      <ShopModal
-        isModalOpen={isModalOpen}
-        handleModal={handleModal}
-        handleConfirm={handleConfirm}
-        text={"¿Quieres cancelar la venta? Los datos de la venta se perderán."}
-        textButton={"Cancelar la venta"}
-        cancel={true}
-        handleCancel={handleCancel}
-      />
-      <div className="container">
+      <div className="centered-container mt-1">
         {loading ? (
           <Spinner />
         ) : alert ? (
@@ -141,46 +132,64 @@ const ConfirmSale = () => {
             />
           </div>
         ) : (
-          <div className="confirm-card">
-            <div className="container">
-              <h5 className="centered p-3">
-                Comprueba que estos son los datos correctos
-              </h5>
-              <CardGame
-                name={name}
-                price={price}
-                image1={image1}
-                description={description}
-                _id={itemId}
-              />
-              <div className="card address-card">
-                <CardAddress
-                  name={addressName}
-                  lastName={lastName}
-                  city={city}
-                  province={province}
-                  streetAddress={streetAddress}
-                />
-              </div>
-              <div className="container container-confirm mt-3">
-                <AlertCustom
-                  className="light"
-                  message="Por favor, comprueba que los datos son correctos. No se podrá modificar la dirección una vez confirmada la venta."
-                />
-              </div>
-              <div className="container centered mt-3">
-                <button
-                  className="btn btn-outline-danger m-1"
-                  onClick={handleModal}
-                >
-                  Cancelar
-                </button>
-                <button className="btn btn-warning" onClick={handleTransaction}>
-                  Confirmar
-                </button>
+          <>
+            <ShopModal
+              isModalOpen={isModalOpen}
+              handleModal={handleModal}
+              handleConfirm={handleConfirm}
+              text={
+                "¿Quieres cancelar la venta? Los datos de la venta se perderán."
+              }
+              textButton={"Cancelar la venta"}
+              cancel={true}
+              handleCancel={handleCancel}
+            />
+            <div className="confirm-card">
+              <div className="">
+                <h5 className="text-center p-3">
+                  Comprueba que estos son los datos correctos
+                </h5>
+                <div className="container-sale">
+                  <CardGame
+                    name={name}
+                    price={price}
+                    image1={image1}
+                    description={description}
+                    _id={itemId}
+                  />
+                </div>
+                <div className="card address-card mt-3">
+                  <CardAddress
+                    name={addressName}
+                    lastName={lastName}
+                    city={city}
+                    province={province}
+                    streetAddress={streetAddress}
+                  />
+                </div>
+                <div className="container mt-3 p-1">
+                  <AlertCustom
+                    className="light m-3"
+                    message="Por favor, comprueba que los datos son correctos. No se podrá modificar la dirección una vez confirmada la venta."
+                  />
+                </div>
+                <div className="container centered mt-3 pb-3">
+                  <button
+                    className="btn btn-outline-danger m-1"
+                    onClick={handleModal}
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    className="btn btn-warning"
+                    onClick={handleTransaction}
+                  >
+                    Confirmar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     </>

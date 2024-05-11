@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import "./Profile.css"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -42,6 +43,7 @@ const Profile = () => {
       const myProfile = await GetProfile(username)
       setProfile(myProfile.data)
       setUserGames(myProfile.data.games)
+      setAvatarUrl(myProfile.data.avatar)
     } catch (error) {
       console.log("Error fetching profile:", error)
       setLoading(false)
@@ -60,8 +62,6 @@ const Profile = () => {
       if (canEdit) {
         setEdit(true)
       }
-    } else {
-      Navigate("/login")
     }
   }, [decode?.username, username])
 
@@ -97,7 +97,6 @@ const Profile = () => {
         avatar: avatarFile?.avatar,
         description: editProfile.description || profile.description,
       }
-
       const updated = await UpdateProfile(username, profileToUpdate, token)
       setProfile(updated.data)
       handleModal()
@@ -117,11 +116,7 @@ const Profile = () => {
     Navigate("/address")
   }
   useEffect(() => {
-    if (token) {
-      fetchProfile()
-    } else {
-      Navigate("/login")
-    }
+    fetchProfile()
   }, [username])
 
   // console.log(profile)
@@ -130,9 +125,18 @@ const Profile = () => {
   return (
     <>
       {loading ? (
-        <Spinner />
+        <div className="centered-container p-1 ">
+          <Spinner />
+        </div>
+      ) : alert ? (
+        <div className="d-flex justify-content-center mt-3">
+          <AlertCustom
+            className={stateMessage.className}
+            message={stateMessage.message}
+          />
+        </div>
       ) : (
-        <div className="container mt-5 pb-5">
+        <div className="container profile-container">
           <CardProfile
             avatar={avatar}
             username={username}
@@ -172,13 +176,14 @@ const Profile = () => {
                         image1={game.image1}
                         description={game.description}
                         price={game.price}
+                        status={game.status}
                       />
                     </div>
                   )
                 })
               ) : (
                 <AlertCustom
-                  className={"light text-center"}
+                  className={"light text-center mt-3"}
                   message={`${username} no tiene juegos para vender.`}
                 />
               )}

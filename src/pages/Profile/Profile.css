@@ -1,0 +1,9 @@
+.profile-container {
+  margin-top: 3em;
+}
+
+@media (max-width: 600px) {
+  .profile-container {
+    margin-top: 1.5em;
+  }
+}

@@ -4,6 +4,7 @@
   border-color: orange;
   margin: 1em;
   min-width: 22em;
+ overflow: auto;
 }
 .game-img {
     height: 20em;
@@ -13,4 +14,17 @@
   }
   .card-game:hover{
     transform: scale(1.02);
+  }
+  .price-text{
+    font-size: 1.3em;
+    font-weight: bold;
+    color: rgb(91, 91, 91);
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+  }
+  .more{
+    position: absolute;
+    bottom: 0;
+    right:1em ;
   }

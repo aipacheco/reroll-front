@@ -117,11 +117,15 @@ const AddressEdit = () => {
     }
   }, [address, addressError])
 
+  const handleCancel = () => {
+    navigate(`/address`)
+  }
+
   const { name, lastName, streetAddress, city, cp, province } = address
 
   return (
     <>
-      <div className="centered-container">
+      <div className="centered-container p-3">
         {loading ? (
           <Spinner />
         ) : alert ? (
@@ -132,8 +136,8 @@ const AddressEdit = () => {
             />
           </div>
         ) : (
-          <div className="card container mt-5">
-            <h5 className="text-center mt-3">Editar dirección</h5>
+          <div className="card container p-3">
+            <h5 className="text-center">Editar dirección</h5>
             <div className="input-container">
               <InputCustom
                 label={"Nombre"}
@@ -178,7 +182,10 @@ const AddressEdit = () => {
               />
               <div className="error">{addressError.cityError}</div>{" "}
             </div>
-            <SelectProvince userProvince={province} onProvinceChange={handleChange} />
+            <SelectProvince
+              userProvince={province}
+              onProvinceChange={handleChange}
+            />
             <div className="input-container">
               <InputCustom
                 label={"Código postal"}
@@ -190,12 +197,17 @@ const AddressEdit = () => {
               />
               <div className="error">{addressError.cpError}</div>{" "}
             </div>
-            <div className="mb-3">
+            <div className="container d-flex justify-content-center mb-3">
+            <button className="btn btn-outline-danger me-3" onClick={handleCancel}>
+                Volver
+              </button>
               <ButtonCustom
                 text={"Enviar"}
                 handleSubmit={handleSubmit}
                 isFormComplete={isFormComplete}
+              
               />
+           
             </div>
           </div>
         )}

@@ -10,15 +10,14 @@ const Footer = () => {
     <>
       {!token ? (
         <nav className="navbar bg-body-secondary fixed-bottom footer">
-          <div className="container justify-content-around">
+          <div className="container justify-content-center d-flex flex-wrap">
             <LinkButton direction={"/login"} text={"Login"} />
-
             <LinkButton direction={"/register"} text={"Registrate"} />
           </div>
         </nav>
       ) : (
-        <nav className="navbar bg-body-secondary fixed-bottom footer mt-5">
-          <div className="container justify-content-center d-flex flex-wrap">
+        <nav className="navbar bg-body-secondary fixed-bottom footer">
+          <div className="container justify-content-around d-flex flex-wrap">
             <LinkButton direction={"/games"} text={"Home"} icon={"home"} />
             <LinkButton
               direction={"/newGame"}

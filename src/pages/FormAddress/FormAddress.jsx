@@ -7,7 +7,11 @@ import AlertCustom from "../../components/AlertCustom/AlertCustom"
 import { useDispatch, useSelector } from "react-redux"
 import { CheckForm, checkAllEmpty, validator } from "../../utils/utils"
 import Spinner from "../../components/Spinner/Spinner"
-import { CreateAddress, GetAddress } from "../../services/addressServices"
+import {
+  CreateAddress,
+  DeleteAddress,
+  GetAddress,
+} from "../../services/addressServices"
 import SelectProvince from "../../components/SelectProvince/SelectProvince"
 import CardAddress from "../../components/CardAddress/CardAddress"
 import ShopModal from "../../components/ShopModal/ShopModal"
@@ -41,6 +45,7 @@ const FormAddress = () => {
   const [isFormVisible, setFormVisible] = useState(false)
   const [fetchedAddress, setFetchedAddress] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const [selectedAddressId, setSelectedAddressId] = useState(null)
   const dispatch = useDispatch()
   const token = useSelector((state) => state.auth.token)
@@ -144,6 +149,11 @@ const FormAddress = () => {
     setIsModalOpen(true)
   }
 
+  const handleSelectAddressToDelete = (id) => {
+    setSelectedAddressId(id)
+    setIsDeleteModalOpen(true)
+  }
+
   const handleEditAddress = (id) => {
     navigate(`/edit/address/${id}`)
   }
@@ -158,12 +168,55 @@ const FormAddress = () => {
       navigate(`/confirm`)
     }, 500)
   }
+
   const handleModal = () => {
     setIsModalOpen(!isModalOpen)
   }
+
+  const handleDeleteModal = () => {
+    setIsDeleteModalOpen(!isDeleteModalOpen)
+  }
+
+  const handleCancel = () => {
+    setIsDeleteModalOpen(false)
+    setIsModalOpen(false)
+  }
+
+  const handleDeleteConfirm = async () => {
+    setLoading(true)
+    try {
+      const userAddress = await DeleteAddress(selectedAddressId, token)
+      if (userAddress.success) {
+        await fetchAddress()
+        setAlert(true)
+        setStateMessage({
+          message: userAddress.message,
+          className: "success",
+        })
+        setTimeout(() => {
+          setAlert(false)
+        }, 1200)
+      }
+      setLoading(false)
+      setIsDeleteModalOpen(false)
+    } catch (error) {
+      setLoading(false)
+      setAlert(true)
+      setStateMessage({
+        message: `${error}`,
+        className: "danger",
+      })
+      setTimeout(() => {
+        setAlert(false)
+      }, 1200)
+      console.log(error)
+      setIsDeleteModalOpen(false)
+    }
+  }
+
   return (
     <>
-      <div className="container mb-5">
+      <div className="container address">
         {loading ? (
           <Spinner />
         ) : alert ? (
@@ -176,40 +229,54 @@ const FormAddress = () => {
         ) : (
           <>
             {fetchedAddress.length > 0 ? (
-              <div className="card-grid mt-3">
+              <div className="card-grid">
                 {fetchedAddress.map((address) => {
                   return (
-                    <div className="card-container card p-3" key={address._id}>
-                      <CardAddress
-                        key={address._id}
-                        name={address.name}
-                        lastName={address.lastName}
-                        streetAddress={address.streetAddress}
-                        city={address.city}
-                        cp={address.cp}
-                        province={address.province}
-                      />
-                      <div className="centered">
-                        {itemId && (
+                    <div className="col-12 col-md-6 col-lg-4" key={address._id}>
+                      <div className="card-container d-flex justify-content-center card p-3 m-3">
+                        <CardAddress
+                          key={address._id}
+                          name={address.name}
+                          lastName={address.lastName}
+                          streetAddress={address.streetAddress}
+                          city={address.city}
+                          cp={address.cp}
+                          province={address.province}
+                        />
+                        <div className="d-flex justify-content-center">
+                          {itemId && (
+                            <button
+                              className="btn btn-sm btn-outline-success my-button me-1"
+                              onClick={() => handleSelectAddress(address._id)}
+                            >
+                              Seleccionar
+                              <span className="material-symbols-outlined">
+                                done
+                              </span>
+                            </button>
+                          )}
                           <button
-                            className="btn btn-outline-warning my-button me-3"
-                            onClick={() => handleSelectAddress(address._id)}
+                            className="btn btn-sm btn-outline-warning my-button me-1"
+                            onClick={() => handleEditAddress(address._id)}
                           >
-                            Seleccionar
+                            Editar
                             <span className="material-symbols-outlined">
-                              done
+                              edit
                             </span>
                           </button>
-                        )}
-                        <button
-                          className="btn btn-outline-warning my-button"
-                          onClick={() => handleEditAddress(address._id)}
-                        >
-                          Editar
-                          <span className="material-symbols-outlined">
-                            edit
-                          </span>
-                        </button>
+
+                          <button
+                            className="btn btn-sm btn-outline-danger my-button"
+                            onClick={() =>
+                              handleSelectAddressToDelete(address._id)
+                            }
+                          >
+                            Borrar
+                            <span className="material-symbols-outlined">
+                              delete_forever
+                            </span>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   )
@@ -223,14 +290,26 @@ const FormAddress = () => {
               handleConfirm={handleConfirm}
               text={"¿Quieres confirmar esta dirección?"}
               textButton={"Confirmar dirección"}
+              handleCancel={handleCancel}
+              cancel
             />
-            <div className="card container mt-5 p-3">
+            <ShopModal
+              isModalOpen={isDeleteModalOpen}
+              handleModal={handleDeleteModal}
+              handleSelectAddress={handleSelectAddressToDelete}
+              handleConfirm={handleDeleteConfirm}
+              text={"¿Quieres borrar esta dirección?"}
+              textButton={"Borrar dirección"}
+              handleCancel={handleCancel}
+              cancel
+            />
+            <div className="card container mt-3 mb-5 p-3">
               <div className="col-12">
                 <div
                   className="header-container clickable"
                   onClick={toggleForm}
                 >
-                  <h5>Introduce una nueva dirección</h5>
+                  <h5 className="text-center">Introduce una nueva dirección</h5>
                   {isFormVisible ? (
                     <span className="btn btn-warning material-symbols-outlined">
                       expand_more
@@ -308,11 +387,6 @@ const FormAddress = () => {
                         />
                       </div>
                     )}
-                    <ButtonCustom
-                      text={"Enviar"}
-                      handleSubmit={handleSubmit}
-                      isFormComplete={isFormComplete}
-                    />
                     <div className="login-question mt-2">
                       <AlertCustom
                         className={"light text-center"}
@@ -324,6 +398,11 @@ const FormAddress = () => {
                         }
                       />
                     </div>
+                    <ButtonCustom
+                      text={"Enviar"}
+                      handleSubmit={handleSubmit}
+                      isFormComplete={isFormComplete}
+                    />
                   </>
                 )}
               </div>

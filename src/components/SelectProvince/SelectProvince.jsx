@@ -81,7 +81,7 @@ const SelectProvince = ({ onProvinceChange, userProvince }) => {
         value={selectedProvince}
         onChange={handleChange}
       >
-        <option disabled>Elije una opción</option>
+        <option disabled selected>Elije una opción</option>
         {provinces.map((province, index) => (
           <option key={index} value={province}>
             {province.charAt(0).toUpperCase() + province.slice(1).toLowerCase()}

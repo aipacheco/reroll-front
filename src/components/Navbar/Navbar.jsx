@@ -20,7 +20,7 @@ const Navbar = () => {
 
     window.addEventListener("resize", handleResize)
 
-    // Limpiar el evento al desmontar el componente
+    // limpiar el evento al desmontar el componente
     return () => {
       window.removeEventListener("resize", handleResize)
     }

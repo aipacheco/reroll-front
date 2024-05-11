@@ -86,7 +86,7 @@ const Register = () => {
 
   return (
     <>
-      <div className="centered-container">
+      <div className="centered-container p-1">
         {loading ? (
           <Spinner />
         ) : alert ? (
@@ -97,8 +97,8 @@ const Register = () => {
             />
           </div>
         ) : (
-          <div className="card card-register container">
-            <div className="col-12 mb-5 mt-3">
+          <div className="card container p-3">
+            <div className="col-12">
               <h2 className="text-center"> Registro </h2>
               <form onSubmit={handleSubmit}>
                 <div className="input-container">

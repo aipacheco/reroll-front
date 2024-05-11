@@ -29,7 +29,6 @@ const Login = () => {
     emailError: "",
     passwordError: "",
   })
-  const decode = useSelector((state) => state.auth.decode)
 
   useEffect(() => {
     const isErrorClean = checkAllEmpty(userError)
@@ -97,7 +96,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="centered-container">
+      <div className="centered-container p-1">
         {loading ? (
           <Spinner />
         ) : alert ? (
@@ -108,8 +107,8 @@ const Login = () => {
             />
           </div>
         ) : (
-          <div className="card card-register container">
-            <div className="col-12 mb-5 mt-3">
+          <div className="card container p-3">
+            <div className="col-12">
               <h2 className="text-center"> Login </h2>
               <form onSubmit={handleSubmit}>
                 <div className="input-container">

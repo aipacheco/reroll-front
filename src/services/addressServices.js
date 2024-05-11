@@ -80,3 +80,23 @@ export const UpdateAddress = async (id, address, token) => {
     throw error
   }
 }
+
+export const DeleteAddress = async (id, token) => {
+  try {
+    const response = await fetch(`${URL}/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    })
+    const data = await response.json()
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+    return data
+  } catch (error) {
+    console.log("Error al eliminar la dirección", error)
+    throw error
+  }
+}

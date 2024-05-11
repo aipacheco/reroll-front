@@ -5,7 +5,7 @@ import "./LinkButton.css"
 export const LinkButton = ({ direction, text, icon }) => {
   return (
     <div>
-      <div className="center-flex me-5">
+      <div className="center-flex">
         <Link to={`${direction}`}>
           <button
             id="link-button"

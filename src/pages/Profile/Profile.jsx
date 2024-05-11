@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import "./Profile.css"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -124,7 +125,7 @@ const Profile = () => {
   return (
     <>
       {loading ? (
-        <div className="centered-container">
+        <div className="centered-container p-1 ">
           <Spinner />
         </div>
       ) : alert ? (
@@ -135,7 +136,7 @@ const Profile = () => {
           />
         </div>
       ) : (
-        <div className="container mt-5 mb-5">
+        <div className="container profile-container">
           <CardProfile
             avatar={avatar}
             username={username}

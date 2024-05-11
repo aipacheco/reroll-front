@@ -10,7 +10,7 @@ const Footer = () => {
     <>
       {!token ? (
         <nav className="navbar bg-body-secondary fixed-bottom footer">
-          <div className="container justify-content-center d-flex flex-wrap">
+          <div className="container justify-content-around d-flex flex-wrap">
             <LinkButton direction={"/login"} text={"Login"} />
             <LinkButton direction={"/register"} text={"Registrate"} />
           </div>
@@ -18,13 +18,20 @@ const Footer = () => {
       ) : (
         <nav className="navbar bg-body-secondary fixed-bottom footer">
           <div className="container justify-content-around d-flex flex-wrap">
-            <LinkButton direction={"/games"} text={"Home"} icon={"home"} />
             <LinkButton
+              customClass="footer-button"
+              direction={"/games"}
+              text={"Home"}
+              icon={"home"}
+            />
+            <LinkButton
+              customClass="footer-button"
               direction={"/newGame"}
               text={"Nuevo juego"}
               icon={"add"}
             />
             <LinkButton
+              customClass="footer-button"
               direction={`/user/${decode.username}`}
               text={"Perfil"}
               icon={"person"}

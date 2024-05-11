@@ -43,7 +43,7 @@ const Navbar = () => {
         {decode && decode.role === "admin" && (
           <div className="admin">
             <button
-              className="btn btn-outline-warning my-button"
+              className="btn btn-outline-warning my-button footer-button"
               onClick={handleAdmin}
             >
               <span className="button-text">Admin</span>
@@ -63,7 +63,7 @@ const Navbar = () => {
         {token && (
           <div className="logout-button-container">
             <button
-              className="btn btn-outline-warning my-button"
+              className="btn btn-outline-warning my-button footer-button"
               onClick={handleLogout}
             >
               <span className="button-text">Exit</span>

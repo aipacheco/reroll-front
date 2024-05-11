@@ -6,7 +6,7 @@
     box-shadow: 0px -18px 17px -21px rgba(0, 0, 0, 0.35);
 }
 @media (max-width: 600px) {
-    .button-text {
-      display: none;
-    }
+  .footer-button .button-text {
+    display: none;
   }
+}

@@ -142,11 +142,13 @@ const GameDetail = () => {
 
   return (
     <>
-      <div className="center-flex">
+      <div className="center-flex mt-1">
         {loading ? (
+          <div className="centered-container">
           <Spinner />
+          </div>
         ) : alert ? (
-          <div className="d-flex justify-content-center">
+          <div className="centered-container">
             <AlertCustom
               className={stateMessage.className}
               message={stateMessage.message}

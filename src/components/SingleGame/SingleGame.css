@@ -89,7 +89,7 @@ button.active {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.9em;
+    font-size: 1.2em;
   }
   .material-button {
     font-size: 1em;

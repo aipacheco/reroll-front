@@ -10,7 +10,7 @@
     height: 20em;
     width: auto; 
     padding: 1em;
-    object-fit: cover; 
+    object-fit: scale-down; 
   }
   .card-game:hover{
     transform: scale(1.02);

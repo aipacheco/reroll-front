@@ -1,4 +1,3 @@
-// import Spinner from "../../components/Spinner/Spinner"
 import { useEffect, useState } from "react"
 import "./Home.css"
 import { GetGames } from "../../services/gameServices"
@@ -20,21 +19,20 @@ const Home = () => {
   })
   const [games, setGames] = useState([])
   const [search, setSearch] = useState({
-    name: "",
     category: "",
     playersMin: 1,
     playersMax: 100,
   })
   const [category, setCategory] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("")
+  const [inputToSearch, setInputToSearch] = useState("")
 
   const filteredGames = games.filter(
     (game) =>
-      game.name.toLowerCase().includes(search.name.toLowerCase()) &&
-      game.category.toLowerCase().includes(search.category.toLowerCase())
-    &&
-    game.playersMin >= search.playersMin &&
-    game.playersMax <= search.playersMax
+      game.name.toLowerCase().includes(inputToSearch.toLowerCase()) &&
+      game.category.toLowerCase().includes(search.category.toLowerCase()) &&
+      game.playersMin >= search.playersMin &&
+      game.playersMax <= search.playersMax
   )
 
   const handleCategoryChange = (selectedCategoryId, selectedCategoryName) => {
@@ -108,8 +106,8 @@ const Home = () => {
           <div className="container">
             <InputSearch
               type="text"
-              value={search}
-              handleChange={(e) => setSearch(e.target.value)}
+              value={inputToSearch}
+              handleChange={(e) => setInputToSearch(e.target.value)}
               placeholder="Buscar..."
             />
           </div>
@@ -163,7 +161,9 @@ const Home = () => {
                 className="form-select"
                 onChange={(event) => handleSort(event.target.value)}
               >
-                <option selected disabled>Ordenar por precio</option>
+                <option selected disabled>
+                  Ordenar por precio
+                </option>
                 <option value="ascending">Menor</option>
                 <option value="descending">Mayor</option>
               </select>

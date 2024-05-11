@@ -76,12 +76,12 @@ button.active {
     overflow: hidden;
   }
   .carousel-item {
-    height: 20em;
-    max-width: 20em;
+    height: 21em;
+    max-width: 21em;
   }
 
   .carousel-inner {
-    width: 20em !important;
+    width: 22em !important;
   }
 
   .status-comprado,

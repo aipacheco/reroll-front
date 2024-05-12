@@ -37,7 +37,7 @@ const SingleGame = ({
 
   return (
     <div className="container-single">
-        <div className="card p-1 ">
+        <div className="card p-3">
           <Carousel activeIndex={activeStep} onSelect={handleSelect}>
             {images.map((step) => (
               <Carousel.Item key={step.label}>

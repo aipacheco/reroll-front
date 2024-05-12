@@ -26,14 +26,24 @@ const Home = () => {
   const [category, setCategory] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("")
   const [inputToSearch, setInputToSearch] = useState("")
+  const [isRangeTouched, setIsRangeTouched] = useState(false)
+  const maxPlayers = Math.max(...games.map((game) => game.playersMax))
 
-  const filteredGames = games.filter(
-    (game) =>
+  const filteredGames = games.filter((game) => {
+    //para controlar si la barra de rango ha sido tocada
+    if (!isRangeTouched) {
+      return (
+        game.name.toLowerCase().includes(inputToSearch.toLowerCase()) &&
+        game.category.toLowerCase().includes(search.category.toLowerCase())
+      )
+    }
+    return (
       game.name.toLowerCase().includes(inputToSearch.toLowerCase()) &&
       game.category.toLowerCase().includes(search.category.toLowerCase()) &&
-      game.playersMin >= search.playersMin &&
+      game.playersMin == search.playersMin &&
       game.playersMax <= search.playersMax
-  )
+    )
+  })
 
   const handleCategoryChange = (selectedCategoryId, selectedCategoryName) => {
     setSearch((prevState) => ({
@@ -64,7 +74,16 @@ const Home = () => {
 
   const handleRange = (event, newValue) => {
     setSearch({ ...search, playersMin: newValue[0], playersMax: newValue[1] })
-    // console.log(search.playersMin, search.playersMax)
+    setIsRangeTouched(true)
+  }
+
+  const handleDeleteRange = () => {
+    setSearch((prevState) => ({
+      ...prevState,
+      playersMin: 1,
+      playersMax: 100,
+    }))
+    setIsRangeTouched(false)
   }
 
   const fetchGames = async () => {
@@ -130,20 +149,19 @@ const Home = () => {
                       : "Categoría"}
                   </button>
                   <ul className="dropdown-menu dropdown-center">
-                    {category
-                      .map((item, index) => (
-                        <li
-                          className="dropdown-item"
-                          key={index}
-                          value={item._id}
-                          onClick={() =>
-                            handleCategoryChange(item._id, item.name)
-                          }
-                        >
-                          {item.name.charAt(0).toUpperCase() +
-                            item.name.slice(1).toLowerCase()}
-                        </li>
-                      ))}
+                    {category.map((item, index) => (
+                      <li
+                        className="dropdown-item"
+                        key={index}
+                        value={item._id}
+                        onClick={() =>
+                          handleCategoryChange(item._id, item.name)
+                        }
+                      >
+                        {item.name.charAt(0).toUpperCase() +
+                          item.name.slice(1).toLowerCase()}
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
@@ -170,41 +188,47 @@ const Home = () => {
               </select>
             </div>
 
-            <div className="col-12 col-md-4 col-lg-3 col-xl-3  card m-1 p-3">
-              <div className="mt-1 text-center ">Número de jugadores</div>
-              <ThemeProvider theme={customTheme}>
-                <Slider
-                  getAriaLabel={() => "Player range"}
-                  value={[search.playersMin, search.playersMax]}
-                  onChange={handleRange}
-                  valueLabelDisplay="auto"
-                  min={1}
-                  max={15}
-                  color="warning"
-                />
-              </ThemeProvider>
-              <div className="mt-3"></div>
+            <div className="col-12 col-md-4 col-lg-3 col-xl-3 card m-1 p-3">
+              <div className="mt-1 text-center">Número de jugadores</div>
+              <div className="d-flex align-items-center">
+                <ThemeProvider theme={customTheme}>
+                  <Slider
+                    getAriaLabel={() => "Player range"}
+                    value={[search.playersMin, search.playersMax]}
+                    onChange={handleRange}
+                    valueLabelDisplay="auto"
+                    min={1}
+                    max={maxPlayers}
+                    color="warning"
+                  />
+                </ThemeProvider>
+                <span
+                  className="m-2 text-danger clickable margin-left"
+                  onClick={handleDeleteRange}
+                >
+                  Limpiar
+                </span>
+              </div>
             </div>
           </div>
           <div className="row mb-5">
             {filteredGames.length > 0 ? (
-              filteredGames
-                .map((game) => (
-                  <div
-                    className="col-12 col-md-6 col-lg-3 col-xl-4 p-3 centered"
+              filteredGames.map((game) => (
+                <div
+                  className="col-12 col-md-6 col-lg-3 col-xl-4 p-3 centered"
+                  key={game._id}
+                >
+                  <CardGame
+                    _id={game._id}
                     key={game._id}
-                  >
-                    <CardGame
-                      _id={game._id}
-                      key={game._id}
-                      name={game.name}
-                      image1={game.image1}
-                      description={game.description}
-                      price={game.price}
-                      status={game.status}
-                    />
-                  </div>
-                ))
+                    name={game.name}
+                    image1={game.image1}
+                    description={game.description}
+                    price={game.price}
+                    status={game.status}
+                  />
+                </div>
+              ))
             ) : (
               <AlertCustom
                 className={"light text-center"}

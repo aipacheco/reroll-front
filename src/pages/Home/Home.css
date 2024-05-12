@@ -11,3 +11,7 @@
 .MuiSlider-valueLabel {
   background-color: rgb(255, 166, 0) !important;
 }
+
+.margin-left {
+  margin-left: 1.2em !important;
+}

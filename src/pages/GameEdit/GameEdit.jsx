@@ -42,6 +42,7 @@ const GameEdit = () => {
   const [image3Url, setImage3Url] = useState(null)
   const [alert, setAlert] = useState(false)
   const token = useSelector((state) => state.auth.token)
+  const decode = useSelector((state) => state.auth.decode)
   const { id } = useParams()
 
   const fetchGame = async () => {
@@ -117,6 +118,10 @@ const GameEdit = () => {
       ...prevState,
       category: selectedCategory,
     }))
+  }
+
+  const handleCancel = () => {
+    navigate(`/user/${decode.username}`)
   }
 
   const { name, playersMin, playersMax, description, price, category } = game
@@ -281,19 +286,27 @@ const GameEdit = () => {
                 />
                 <div className="error">{gameError.priceError}</div>
               </div>
-              {isFormComplete ? (
-                <ButtonCustom
-                  text={"Editar"}
-                  isFormComplete={isFormComplete}
-                  handleSubmit={handleSubmit}
-                />
-              ) : (
-                <ButtonCustom
-                  text={"Debes rellenar todos los campos"}
-                  isFormComplete={isFormComplete}
-                  handleSubmit={handleSubmit}
-                />
-              )}
+              <div className="d-flex justify-content-center ">
+                <button
+                  className="btn btn-outline-danger me-2"
+                  onClick={handleCancel}
+                >
+                  Volver
+                </button>
+                {isFormComplete ? (
+                  <ButtonCustom
+                    text={"Editar"}
+                    isFormComplete={isFormComplete}
+                    handleSubmit={handleSubmit}
+                  />
+                ) : (
+                  <ButtonCustom
+                    text={"Debes rellenar todos los campos"}
+                    isFormComplete={isFormComplete}
+                    handleSubmit={handleSubmit}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </>

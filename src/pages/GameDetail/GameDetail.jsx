@@ -48,6 +48,7 @@ const GameDetail = () => {
     }
     setLoading(false)
   }
+
   const handleShop = () => {
     dispatch(
       setItemId({
@@ -142,10 +143,10 @@ const GameDetail = () => {
 
   return (
     <>
-      <div className="center-flex mt-1">
+      <>
         {loading ? (
           <div className="centered-container">
-          <Spinner />
+            <Spinner />
           </div>
         ) : alert ? (
           <div className="centered-container">
@@ -157,37 +158,39 @@ const GameDetail = () => {
         ) : (
           <>
             {" "}
-            <SingleGame
-              _id={_id}
-              images={[
-                { label: "Imagen 1", imgPath: image1 },
-                { label: "Imagen 2", imgPath: image2 },
-                { label: "Imagen 3", imgPath: image3 },
-              ]}
-              name={name}
-              description={description}
-              playersMin={playersMin}
-              playersMax={playersMax}
-              price={price}
-              author={authorName}
-              handleAuthor={handleAuthor}
-              handleShop={
-                decode?.username === authorName ? handleEdit : handleShop
-              }
-              buttonText={
-                decode?.username === authorName ? "Editar" : "Comprar"
-              }
-              symbol={
-                decode?.username === authorName ? "edit" : "shopping_cart"
-              }
-              showButtons={decode?.username === authorName}
-              handleReserve={() => handleReserve(_id)}
-              handleSold={() => handleSold(_id)}
-              status={status}
-            />
+            <div className="centered-container">
+              <SingleGame
+                _id={_id}
+                images={[
+                  { label: "Imagen 1", imgPath: image1 },
+                  { label: "Imagen 2", imgPath: image2 },
+                  { label: "Imagen 3", imgPath: image3 },
+                ]}
+                name={name}
+                description={description}
+                playersMin={playersMin}
+                playersMax={playersMax}
+                price={price}
+                author={authorName}
+                handleAuthor={handleAuthor}
+                handleShop={
+                  decode?.username === authorName ? handleEdit : handleShop
+                }
+                buttonText={
+                  decode?.username === authorName ? "Editar" : "Comprar"
+                }
+                symbol={
+                  decode?.username === authorName ? "edit" : "shopping_cart"
+                }
+                showButtons={decode?.username === authorName}
+                handleReserve={() => handleReserve(_id)}
+                handleSold={() => handleSold(_id)}
+                status={status}
+              />
+            </div>
           </>
         )}
-      </div>
+      </>
     </>
   )
 }

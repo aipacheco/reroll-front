@@ -139,9 +139,9 @@ const FormGame = () => {
         <>
           <div className="container centered-container mt-3 mb-5">
             <div className="card p-3">
-              <h2 className="center-flex mb-3 mt-3 text-center">
+              <h3 className="center-flex mb-3 mt-3 text-center">
                 Introduce los datos del juego que quieres vender
-              </h2>
+              </h3>
               <div className="container container-preview mb-3">
                 {game.image1 ? (
                   <>

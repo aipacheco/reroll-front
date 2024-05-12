@@ -1,9 +1,10 @@
 .general-nav {
-  background-color: white !important;
+  background-color: rgb(255, 255, 255) !important;
   box-shadow: 0px 18px 17px -21px rgba(0, 0, 0, 0.35);
 }
 .bg-body-secondary {
   background-color: rgb(255, 255, 255) !important;
+  margin-top: 0 !important;
 }
 .h1-home {
   font-family: "Poetsen One", sans-serif;

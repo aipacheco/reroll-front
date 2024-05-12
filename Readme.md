@@ -1,6 +1,6 @@
 # Proyecto final: Re-roll 
 
-<img src="./src/assets/perfilucambiojuego.gif">
+<img src="./src/assets/perfilycambiojuego.gif">
 
 <details>
   <summary>Contenido 📝</summary>
